@@ -5,6 +5,9 @@ using FluidConsoleApp.Entities;
 
 namespace FluidConsoleApp
 {
+
+
+
     partial class Program
     {
         static void Main(string[] args)
@@ -15,27 +18,28 @@ namespace FluidConsoleApp
 
 
         }
+
         static void TestGOSItemplate()
         {
             string GosiTemplate = Templates.GOSITemplate();
             var parser = new FluidParser();
 
-            SbcEstablishmentSummaryResponseModel Est = new()
-            {
-                CrInformation  = new CrInformation
-                {
-                    
-                }
-            };
-            var source = Templates.GOSITemplate();
-            var options = new TemplateOptions();
-            options.MemberAccessStrategy.Register<SbcEstablishmentSummaryResponseModel>();
+            var Est = FullTemplate.GetFilledInstance();
 
-            if (parser.TryParse(source, out var template, out var error))
+            var options = new TemplateOptions();
+            options.MemberAccessStrategy.Register<FullTemplate>();
+            options.MemberAccessStrategy.Register<SbcEstablishmentSummaryResponseModel>();
+            options.MemberAccessStrategy.Register<CrInformation>();
+            options.MemberAccessStrategy.Register<Lookups>();
+            options.MemberAccessStrategy.Register<TradeNameInformation>();
+            options.MemberAccessStrategy.Register<PaymentInformation>();
+
+
+            if (parser.TryParse(GosiTemplate, out var template, out var error))
             {
                 var context = new TemplateContext(Est, options);
-                //Console.WriteLine(template.Render(context));
-                System.IO.File.WriteAllText("C:\\My Projects\\FluidConsole\\FluidConsoleApp\\Json\\GOSI.json", template.Render(context));
+                string path = System.Reflection.Assembly.GetExecutingAssembly().Location.Replace("FluidConsoleApp.dll", "GOSI.json");
+                System.IO.File.WriteAllText(path, template.Render(context));
 
 
             }

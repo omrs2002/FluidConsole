@@ -4,7 +4,7 @@
         "Id": 1,
         "Name": "New CR"
     },
-    "CRNo": "{{Est.CRNo}}",
+    "CRNo": "{% raw %}{{MC.CRNo}}{% endraw %}",
     "NationalNo": "{{Est.NationalNo}}",
 
     "IsMain": "{{Est.CrInformation.IsMain}}",
@@ -15,15 +15,15 @@
         "Name": "{{Lookups.BusinessArabicName}}"
     },
     
-	{% if TradeNameInformation %}
-        {% assign crname = TradeNameInformation.TradeNamePrefixName | concat: TradeNameInformation.TradeNameMidTradeName | concat: TradeNameInformation.TradeNameSuffixName %}
+	{% if Est.TradeNameInformation %}
+        {% assign crname = Est.TradeNameInformation.TradeNamePrefixName | append: " " | append:  Est.TradeNameInformation.TradeNameMidTradeName | append: " " | append:  Est.TradeNameInformation.TradeNameSuffixName %}
         "CRName": "{{crname | strip }}",
     {% else %}
-    "CRName": "",
+    "CRName":  "",
     {% endif  %}
 	"IssueDate": "{{Est.PaymentInformation.PaymentDate | date: '%s'}}",
     {% assign years = Est.CrInformation.CrInfoDuration | times: 365 | times: 86400 %}
-    "ExpiryDate": "{{Est.PaymentInformation.PaymentDate | date: '%s' | plus: addeddays}}",
+    "ExpiryDate": "  {{ Est.PaymentInformation.PaymentDate | date: '%s' | plus: years }}",
     "CRParties": [
             {
                 "PartyId":  "{{Est.OwnerInformation.OwnerNationalId}}",
@@ -86,7 +86,7 @@
             {% assign checkArray = stringToCheck | split:startsWith %}
 
             {% if checkArray[0] == blank %}
-                "Mobile": "{{Est.ManagerInformation.ManagerInfoMobileNo |  slice: 2,9 }}",
+                "Mobile": "{{Est.ManagerInformation.ManagerInfoMobileNo |  slice: 2,size  }}",
             {% else %}
             "Mobile": "{{Est.ManagerInformation.ManagerInfoMobileNo}}",
             {% endif %}

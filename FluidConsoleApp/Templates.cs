@@ -43,7 +43,7 @@ namespace FluidConsoleApp
 
         public static string GOSITemplate()
         {
-            string GOSItemplate = System.IO.File.ReadAllText("C:\\My Projects\\FluidConsole\\FluidConsoleApp\\Json\\GOSI.fluid");
+            string GOSItemplate = System.IO.File.ReadAllText("C:\\My Projects\\FluidConsole\\FluidConsoleApp\\Json\\GOSI.liquid");
             return GOSItemplate;
         }
 
