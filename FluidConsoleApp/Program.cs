@@ -33,15 +33,18 @@ namespace FluidConsoleApp
             options.MemberAccessStrategy.Register<Lookups>();
             options.MemberAccessStrategy.Register<TradeNameInformation>();
             options.MemberAccessStrategy.Register<PaymentInformation>();
-
+            options.MemberAccessStrategy.Register<ManagerInformation>();
+            options.MemberAccessStrategy.Register<OwnerInformation>();
+            options.MemberAccessStrategy.Register<RequestActivityInformation>();
+            options.MemberAccessStrategy.Register<CRParty>();
+            options.MemberAccessStrategy.Register<Nationality>();
+            options.MemberAccessStrategy.Register<RelationType>();
 
             if (parser.TryParse(GosiTemplate, out var template, out var error))
             {
                 var context = new TemplateContext(Est, options);
                 string path = System.Reflection.Assembly.GetExecutingAssembly().Location.Replace("FluidConsoleApp.dll", "GOSI.json");
                 System.IO.File.WriteAllText(path, template.Render(context));
-
-
             }
             else
             {

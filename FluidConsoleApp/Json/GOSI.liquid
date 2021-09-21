@@ -6,23 +6,20 @@
     },
     "CRNo": "{% raw %}{{MC.CRNo}}{% endraw %}",
     "NationalNo": "{{Est.NationalNo}}",
-
     "IsMain": "{{Est.CrInformation.IsMain}}",
     "MainCR": "{{Est.CrInformation.CrInfoMainCRNationalNumber}}",
-
     "BusinessType": {
         "Id": "{{Lookups.BusinessTypeCode}}",
         "Name": "{{Lookups.BusinessArabicName}}"
     },
-    
 	{% if Est.TradeNameInformation %}
-        {% assign crname = Est.TradeNameInformation.TradeNamePrefixName | append: " " | append:  Est.TradeNameInformation.TradeNameMidTradeName | append: " " | append:  Est.TradeNameInformation.TradeNameSuffixName %}
+        {%- assign crname = Est.TradeNameInformation.TradeNamePrefixName | append: " " | append:  Est.TradeNameInformation.TradeNameMidTradeName | append: " " | append:  Est.TradeNameInformation.TradeNameSuffixName -%}
         "CRName": "{{crname | strip }}",
-    {% else %}
+    {%-else%}
     "CRName":  "",
-    {% endif  %}
+    {%- endif%}
 	"IssueDate": "{{Est.PaymentInformation.PaymentDate | date: '%s'}}",
-    {% assign years = Est.CrInformation.CrInfoDuration | times: 365 | times: 86400 %}
+    {%- assign years = Est.CrInformation.CrInfoDuration | times: 365 | times: 86400 %}
     "ExpiryDate": "  {{ Est.PaymentInformation.PaymentDate | date: '%s' | plus: years }}",
     "CRParties": [
             {
@@ -57,15 +54,15 @@
         "Name": "{{lookups.GosiNationalityArabicName}}"
     },
     "CRActivities": [
-    {% for activity in Est.RequestActivityInformation %}
+    {%- for activity in Est.RequestActivityInformation %}
     {
             "Id": "{{activity.RequestActivityISICCode}}",
             "Name": "{{activity.RequestActivityArabicName}}"
     }
-    {% if forloop.last != true %}
+    {%- if forloop.last == false -%}
     ,
-    {% endif %}
-    {% endfor %}
+    {%- endif -%}
+    {%- endfor %}
     ],
     "Location": {
         "BuildingNumber":  "{{Est.AddressInformation.AddressBuldingNo}}",
@@ -81,16 +78,13 @@
             "Id":  "{{lookups.GosiNationalityCode}}",
             "Name": "{{lookups.GosiNationalityArabicName}}"
         },
-            {% assign stringToCheck = Est.ManagerInformation.ManagerInfoMobileNo %}
-            {% assign startsWith = '00' %}
-            {% assign checkArray = stringToCheck | split:startsWith %}
-
-            {% if checkArray[0] == blank %}
-                "Mobile": "{{Est.ManagerInformation.ManagerInfoMobileNo |  slice: 2,size  }}",
-            {% else %}
-            "Mobile": "{{Est.ManagerInformation.ManagerInfoMobileNo}}",
-            {% endif %}
-            "Email":  "{{Est.ManagerInformation.ManagerInfoEmail}}"
+        {%- if Est.ManagerInformation.ManagerInfoMobileNo[0] == '0' and  Est.ManagerInformation.ManagerInfoMobileNo[1] == '0' %}
+        {%- assign mob_size = Est.ManagerInformation.ManagerInfoMobileNo.size | minus: 2 %}
+         "Mobile": "{{Est.ManagerInformation.ManagerInfoMobileNo |  slice: 2,12 }}",
+            {%- else %}
+         "Mobile": "{{Est.ManagerInformation.ManagerInfoMobileNo}}",
+            {%- endif %}
+         "Email":  "{{Est.ManagerInformation.ManagerInfoEmail}}"
     },
     "City": {
         "Id": "{{lookups.LookupCityBusinessCode}}",
