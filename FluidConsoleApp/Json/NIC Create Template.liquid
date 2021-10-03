@@ -1,0 +1,69 @@
+{
+    "Input": {
+        "Request_Number": "{{Est.Id}}",
+        "New_700_ID": "{% raw %}{{NIC.New_700_ID}}{% endraw %}",
+        {%- comment %} Firm_Name {% endcomment %}
+        {%- if Est.TradeNameInformation %}
+            {%- assign crname = Est.TradeNameInformation.TradeNamePrefixName | append: " " | append:  Est.TradeNameInformation.TradeNameMidTradeName | append: " " | append:  Est.TradeNameInformation.TradeNameSuffixName -%}
+            "Firm_Name": "{{crname | strip }}",
+        {%-else%}
+        "Firm_Name":  "",
+        {%- endif%}
+        "Firm_Nationality_Code": {{Lookups.OwnerNationalityId}},
+        "Issue_DateU": "{{Est.PaymentInformation.PaymentDate | date: '%s'}}",
+        {%- assign years = Est.CrInformation.CrInfoDuration | times: 365 | times: 86400 %}
+        "Expiry_DateU": "  {{ Est.PaymentInformation.PaymentDate | date: '%s' | plus: years }}",
+        "LK_CR_Type": {{Lookups.LK_CR_Type}},
+        "LK_CR_Location":{{Lookups.LK_CR_Location}},
+        "PO_Box": "{{Est.AddressInformation.AddressZipCode}}",
+        "Zip_Code":"{{Est.AddressInformation.AddressZipCode}}",
+        {%- comment %} PO_Box & Zip_Code {% endcomment %}
+        {%- if Est.AddressInformation %}
+        "Address":"{{Est.AddressInformation.AddressAddressLineAr}}",
+        {%-else%}
+        "Address":  "",
+        {%- endif%}
+        {%- comment %} Telephone {% endcomment %}
+        {%- if Est.ContactInformation.ContactPhone %}
+        "Telephone":"{{Est.ContactInformation.ContactMobileNo}}",
+        {%-else%}
+        "Telephone":  "",
+        {%- endif%}
+        "Fax": 0,
+        {%- comment %} Capital {% endcomment %}
+        {%- if Est.CrInformation.CrInfoCapital %}
+        "Capital":{{Est.CrInformation.CrInfoCapital}},
+        {%-else%}
+        "Capital":0,
+        {%- endif%}
+        {%- comment %} CR NUMBER {% endcomment %}
+        {%- if Est.CrInformation.IsMain %}
+            {%- if Est.CrInformation.CrInfoMainCRNationalNumber and Est.CrInformation.IsMain == false %}
+                "Main_CR_Number": {{Est.CrInformation.CrInfoMainCRNationalNumber}}
+            {%- else%}
+                "Main_CR_Number": 0
+            {%- endif%}        
+        {%- else%}
+            "Main_CR_Number": 0
+        {%- endif%}
+    },
+    "Inputlist": [
+        {
+            "Owner_ID": {{Est.OwnerInformation.OwnerNationalId}},
+            "LK_Relation_Code": {{Lookups.LK_Relation_Code}},
+            "Percentage": 0.0,
+            "Share": 0.0
+        }
+    ],
+    "ISICList": 
+    [
+    {%- if Est.RequestActivityInformation %}
+        {%- for isic in Est.RequestActivityInformation %}
+        {
+             "ISIC_Code": "{{isic.RequestActivityISICCode}}"
+        }
+        {%- if forloop.last == false -%},{%- endif -%}
+        {%- endfor %}
+    {%-endif%}
+    ]
+}

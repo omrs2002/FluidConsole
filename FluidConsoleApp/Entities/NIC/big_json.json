@@ -1,0 +1,103 @@
+{
+    "Lookups": {
+        "LK_CR_Type": 5,
+        "LK_CR_Location": 3344,
+        "OwnerNationalityId": 966,
+        "LK_Relation_Code": 55
+    },
+    "Est": {
+        "Id": 233454443,
+        "BusinessTypeId": null,
+        "RequestId": "00000000-0000-0000-0000-000000000000",
+        "RequestReference": "44466788654",
+      "PaymentInformation": {
+        "RecieptNumber": "344544432",
+        "PaymentDate": "2021-09-29T00:00:00+03:00",
+        "BankId": "214",
+        "BankNumber": "1"
+      },
+        "ApplicantInformation": null,
+        "OwnerInformation": {
+            "OwnerUserId": null,
+            "OwnerAttachmentId": null,
+            "OwnerNationalId": "1223454321",
+            "OwnerGenderId": null,
+            "OwnerNationalityId": "b01a0d5b-8d0f-491e-84de-95acf4890c46",
+            "OwnerIdentityType": null,
+            "OwnerNationalityArabic": null,
+            "OwnerFullNameArabic": "Owner Full Name",
+            "OwnerFullNameEnglish": null,
+            "OwnerNationalityEnglish": null,
+            "OwnerBirthDate": "1983-09-29T00:00:00+03:00"
+        },
+        "ManagerInformation": {
+            "ManagerTypeNameAr": null,
+            "ManagerTypeNameEn": null,
+            "ManagerTypeId": null,
+            "ManagerInfoIdentityNo": 1244565432,
+            "ManagerInfoBirthDate": "1983-09-29T00:00:00+03:00",
+            "ManagerInfoMobileNo": "00966541901636",
+            "ManagerInfoEmail": "omrs2002@yahoo.com",
+            "ManagerInfoNameAr": "Manager Name",
+            "ManagerInfoNameEn": "Manager Name",
+            "ManagerInfoNationalityNameAr": "SAU",
+            "ManagerInfoNationalityNameEn": "SAU",
+            "ManagerInfoNationalityId": "b01a0d5b-8d0f-491e-84de-95acf4890c46"
+        },
+        "AddressInformation": null,
+        "ContactInformation": null,
+        "CrInformation": {
+            "CrInfoMainCRNationalNumber": 12341234,
+            "CrInfoMainCRNumber": null,
+            "CrInfoDuration": 2,
+            "CrInfoChamberName": "Info Chamber Name",
+            "CrInfoChamberCode": 55,
+            "CrInfoCapital": 999.0,
+            "CrInfoStartDate": null,
+            "CrInfoCityNameAr": null,
+            "CrInfoCityNameEn": null,
+            "IsMain": false,
+            "CrInfoChamberSubscriptionDegree": null,
+            "CrInfoCityId": null,
+            "CrInfoChamberSubscriptionDegreeName": null
+        },
+        "FiscalYearInformation": null,
+        "TradeNameInformation": {
+            "TradeNameExistingEntityNo": null,
+            "TradeNameReservationNo": null,
+            "TradeNameNamingMethod": null,
+            "TradeNamePrefixCode": null,
+            "TradeNamePrefixName": "Cofee",
+            "TradeNameSuffixCode": null,
+            "TradeNameSuffixName": "Limited",
+            "TradeNameMidTradeName": "Company"
+        },
+        "SaudiPostInformation": null,
+        "RequestActivityInformation": [{
+                "RequestActivityISICCode": "14332765",
+                "RequestActivityArabicName": "RequestActivityArabicName1",
+                "RequestActivityEnglishName": null,
+                "RequestActivityIsMcRequiredLicense": false,
+                "RequestActivityLicenseIssuerArabicName": null,
+                "RequestActivityLicenseIssuerCode": null,
+                "RequestActivityLicenseIssuerEnglishName": null
+            }, {
+                "RequestActivityISICCode": "25467567",
+                "RequestActivityArabicName": "RequestActivityArabicName2",
+                "RequestActivityEnglishName": null,
+                "RequestActivityIsMcRequiredLicense": false,
+                "RequestActivityLicenseIssuerArabicName": null,
+                "RequestActivityLicenseIssuerCode": null,
+                "RequestActivityLicenseIssuerEnglishName": null
+            }, {
+                "RequestActivityISICCode": "31223444",
+                "RequestActivityArabicName": "RequestActivityArabicName3",
+                "RequestActivityEnglishName": null,
+                "RequestActivityIsMcRequiredLicense": false,
+                "RequestActivityLicenseIssuerArabicName": null,
+                "RequestActivityLicenseIssuerCode": null,
+                "RequestActivityLicenseIssuerEnglishName": null
+            }
+        ]
+    }
+}

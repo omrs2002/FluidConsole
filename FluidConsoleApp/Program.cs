@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fluid;
+using Fluid.Values;
 using FluidConsoleApp.Entities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace FluidConsoleApp
 {
@@ -14,11 +17,50 @@ namespace FluidConsoleApp
         {
 
             //TestSimpleTemplate();
-            TestGOSItemplate();
+            //TestGOSItemplate();
+            //TestNICVerifyTemplate();
+            TestMC();
+        }
+
+        static void TestNICVerifyTemplate()
+        {
+
+            string temp = Templates.NICVerifyTemplate();
+            var parser = new FluidParser();
+            string big_json = System.IO.File.ReadAllText("C:\\My Projects\\FluidConsole\\FluidConsoleApp\\Entities\\NIC\\NICVerify.json");
+            string sm = temp;
+            string cres = FluidHelper.FluidMapper(big_json, sm);
+            string path = System.Reflection.Assembly.GetExecutingAssembly().Location.Replace("FluidConsoleApp.dll", "VerifyNIC.json");
+            System.IO.File.WriteAllText(path, cres);
+            Console.WriteLine("Again (Y/N):");
+            var r = Console.ReadLine();
+            if (r.ToUpper() == "Y")
+            {
+                TestGOSItemplate();
+            }
 
 
         }
+    
+        static void TestMC()
+        {
 
+            string temp = Templates.MCTemplate();
+            var parser = new FluidParser();
+            string big_json = System.IO.File.ReadAllText("C:\\My Projects\\FluidConsole\\FluidConsoleApp\\Entities\\NIC\\NICVerify.json");
+            string sm = temp;
+            string cres = FluidHelper.FluidMapper(big_json, sm);
+            string path = System.Reflection.Assembly.GetExecutingAssembly().Location.Replace("FluidConsoleApp.dll", "MC.json");
+            System.IO.File.WriteAllText(path, cres);
+            Console.WriteLine("Again (Y/N):");
+            var r = Console.ReadLine();
+            if (r.ToUpper() == "Y")
+            {
+                TestGOSItemplate();
+            }
+
+
+        }
         static void TestGOSItemplate()
         {
             string GosiTemplate = Templates.GOSITemplate();

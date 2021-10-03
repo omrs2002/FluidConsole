@@ -1,0 +1,108 @@
+{%- for license in Momra.Licenses %}
+ {
+    "LicensesInfo": [
+        {
+            "BillInfo": {
+                "BankId": "{{BaladyCR.BankId}}",
+                "BillNumber": "{{BaladyCR.RecieptNumber}}",
+                "BillFees": [
+				{%- for fee in license.BillInfo.BillFees %}
+                    {
+                        "FeeId": "{{fee.FeeId}}",
+                        "FeeValue": "{{fee.FeeValue}}"
+                    },
+					{%- endfor %}
+                ],
+                "PaymentDateU": "{{BaladyCR.PaymentDate| date: '%s' }}",
+                "ReceptNumber": "{{BaladyCR.RecieptNumber}}",
+                "TotalAmount": "{{license.BillInfo.TotalAmount}}"
+            },
+            "Duration": {{license.AdditionalInfo.Duration}},
+            "LicenseActivity": {
+                "AdditionalActivities": [
+				{%- for activity in license.SimilarActivities %}
+				{
+				"Area":"{{activity.Area}}",
+				"DetailedActivityId":"{{activity.ActivityId}}",
+				"UnitCount":0
+				},
+				{%- endfor %}
+				],
+                "MainActivity": {
+                    "AccommodationTypeId": "{{license.AdditionalInfo.AccomodationTypeId}}",
+                    "AccommodationTypeName": "{{license.AdditionalInfo.AccomodationTypeNameAr}}",
+                    "Area": "{{license.AdditionalInfo.TotalArea}}",
+                    "DetailedActivityId": "{{license.BaladyDetailedActivityId}}",
+                    "UnitCount": 0
+                },
+                "WorkerTypeId": {{license.AdditionalInfo.LaborGenderId}}
+            },
+		    {%- assign days = 365 | times: 86400 %}
+            "LicenseExpirationDateU": {{BaladyCR.PaymentDate | date: "%s" | plus: days  }},
+            "LicenseIssueDateU": "{{BaladyCR.PaymentDate| date: '%s' }}",
+            "LicenseReferenceId": "{{Momra.ReferenceId}}",
+            "LocationInfo": {
+                "AdditionalNumber": "{{license.Address.AdditionalNo}}",
+                "BuildingNumber": "{{license.Address.BuildingNo}}",
+                "CityCode": "{{license.Address.CityId}}",
+                "DistrictCode": "{{license.AdditionalInfo.BaladyDistrictCode}}",
+                "Latitude": "{{license.Address.Latitude}}",
+                "Longitude": "{{license.Address.Longitude}}",
+                "RegionCode": "{{license.Address.RegionId}}",
+                "StreetCode": "{{license.AdditionalInfo.BaladyStreetCode}}",
+                "StreetNameAR": "{{license.Address.StreetNameAr}}",
+                "StreetNameEN": "{{license.Address.StreetNameEn}}",
+                "SubMunicipalityId": "{{license.AdditionalInfo.BaladyaCode}}",
+                "UnitNumber": "{{license.Address.UnitNo}}",
+                "UnitTypeId": "{{license.Address.UnitTypeId}}",
+                "ZipCode": "{{license.Address.PostalCode}}"
+            },
+            "Owner": {
+                "Email": "{{BaladyCR.CreatorEmail}}",      
+                "IdentityType": "2",
+                "Mobile": "{{ BaladyCR.CreatorMobile}}",
+                "NationalityId": null,
+            },
+            "ShopInfo": {
+                "Area": "{{license.TotalArea}}",
+                "BoardsInfo": [
+				{%- for board in license.Boards %}
+                    {
+                        "Area": "{{board.Area}}",
+                        "TypeId": "{{board.TypeId}}"
+                    },
+				{%- endfor %}
+                ],
+                "CleanOption": "{{license.AdditionalInfo.CleanOptionId}}",
+                "ContractType": "{{license.AdditionalInfo.ContractTypeId}}",
+                "FloorCount": "{{license.AdditionalInfo.FloorsCount}}",
+                "FloorNumber": "{{license.Address.FloorNumber}}",
+                "HasElevator": "{{license.AdditionalInfo.HasElevator}}",
+                "HolesCount": "{{license.AdditionalInfo.WindowsNumber}}",
+                "HotelCategory": "{{license.AdditionalInfo.HotelCategoryId}}",
+                "HotelUnitsCount": "{{license.AdditionalInfo.HotelUnitsCount}}",
+                "NumberOfCameras": "{{license.AdditionalInfo.NumberOfCameras}}",
+                "SalamaBillNumber": "{{license.AdditionalInfo.SalamaBillNumber}}",
+                "ShopName": "{{license.LicenseName}}",
+                "ShopUnitNumber": "{{license.Address.UnitNo}}",
+                "SlamaReportNumber": "{{license.AdditionalInfo.SlamaReportNumber}}"
+            },
+			{%- assign SubmitterData = Momra.Stakeholders  | first %}
+            "Submitter": {
+               "BirthDateU": "{{SubmitterData.BirthDate}}",
+                "Email": "{{SubmitterData.Email}}",
+                "FirstName": "{{SubmitterData.FirstNameAr}}",
+                "FourthName": "{{SubmitterData.FourthNameAr}}",
+                "Gender": "{{SubmitterData.Gender}}",
+                "IdentityNumber": "{{SubmitterData.IdentifierId}}",
+                "IdentityType": "{{Lookups.SubmitterIdentityTypeId}}",
+                "Mobile": "{{ SubmitterData.Mobile}}",
+                "NationalityId": "{{Lookups.SubmitterNationalityId}}",
+                "SecondName": "{{SubmitterData.SecondNameAr}}",
+                "ThirdName": "{{SubmitterData.ThirdNameAr}}"
+            },
+            "SubmitterType": "{{Momra.SubmitterType}}"
+        }
+    ]
+}$
+{%- endfor -%}

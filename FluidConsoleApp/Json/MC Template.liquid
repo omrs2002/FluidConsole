@@ -1,0 +1,11 @@
+{
+    "RequestReferance": "{{Est.RequestReference}}",
+    {%- if Est.PaymentInformation  %}
+        "RecieptNumber": "{{Est.PaymentInformation.RecieptNumber}}",
+        "PaymentDateU": "{{Est.PaymentInformation.PaymentDate | date: '%s'}}",
+    {%-else%}
+        "RecieptNumber": "",
+        "PaymentDateU": {{ "now" | date: '%s' }},
+    {%- endif%}
+    "NationalNumber": "{% raw %}{{Est.NationalNumber}}{% endraw %}"
+}

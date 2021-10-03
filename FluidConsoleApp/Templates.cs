@@ -40,12 +40,23 @@ namespace FluidConsoleApp
             ";
         }
 
+        internal static string MCTemplate()
+        {
+            return System.IO.File.ReadAllText("C:\\My Projects\\FluidConsole\\FluidConsoleApp\\Json\\MC Template.liquid"); ;
+        }
 
         public static string GOSITemplate()
         {
             string GOSItemplate = System.IO.File.ReadAllText("C:\\My Projects\\FluidConsole\\FluidConsoleApp\\Json\\GOSI.liquid");
             return GOSItemplate;
         }
+
+        public static string NICVerifyTemplate()
+        {
+            string GOSItemplate = System.IO.File.ReadAllText("C:\\My Projects\\FluidConsole\\FluidConsoleApp\\Json\\NIC Template.liquid");
+            return GOSItemplate;
+        }
+
 
     }
 }

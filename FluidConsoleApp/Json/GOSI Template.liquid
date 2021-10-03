@@ -1,0 +1,93 @@
+{
+    "ReferenceNo": "{{Est.RequestId}}",
+    "TransactionType": {
+        "Id": 1,
+        "Name": "New CR"
+    },
+    "CRNo": "{% raw %}{{MC.CRNo}}{% endraw %}",
+    "NationalNo": "{{Est.NationalNo}}",
+    "IsMain": "{{Est.CrInformation.IsMain}}",
+    "MainCR": "{{Est.CrInformation.CrInfoMainCRNationalNumber}}",
+    "BusinessType": {
+        "Id": "{{Lookups.BusinessTypeCode}}",
+        "Name": "{{Lookups.BusinessArabicName}}"
+    },
+	{% if Est.TradeNameInformation %}
+        {%- assign crname = Est.TradeNameInformation.TradeNamePrefixName | append: " " | append:  Est.TradeNameInformation.TradeNameMidTradeName | append: " " | append:  Est.TradeNameInformation.TradeNameSuffixName -%}
+        "CRName": "{{crname | strip }}",
+    {%-else%}
+    "CRName":  "",
+    {%- endif%}
+	"IssueDate": "{{Est.PaymentInformation.PaymentDate | date: '%s'}}",
+    {%- assign years = Est.CrInformation.CrInfoDuration | times: 365 | times: 86400 %}
+    "ExpiryDate": "  {{ Est.PaymentInformation.PaymentDate | date: '%s' | plus: years }}",
+    "CRParties": [
+            {
+                "PartyId":  "{{Est.OwnerInformation.OwnerNationalId}}",
+                "Name": "{{Est.OwnerInformation.OwnerFullNameArabic}}",
+                "Birthdate": "{{Est.OwnerInformation.OwnerBirthDate | date: '%s'}}",
+                "RelationType": {
+                    "Id": "{{lookups.RelationTypeOwnerCode}}",
+                    "Name": "{{lookups.RelationTypeOwnerArabicName}}"
+                },
+                "Nationality": {
+                    "Id":  "{{lookups.GosiNationalityCode}}",
+                    "Name": "{{lookups.GosiNationalityArabicName}}"
+                }
+            },
+            {
+                "PartyId": "{{Est.ManagerInformation.ManagerInfoIdentityNo}}",
+                "Name": "{{Est.ManagerInformation.ManagerInfoNameAr}}",
+                "Birthdate": "{{Est.ManagerInformation.ManagerInfoBirthDate | date: '%s'}}",
+                "RelationType": {
+                    "Id": "{{lookups.RelationTypeManagerCode}}",
+                    "Name": "{{lookups.RelationTypeManagerArabicName}}"
+                },
+                "Nationality": {
+                    "Id": "{{lookups.GosiManagerNationalityCode}}",
+                    "Name": "{{lookups.GosiManagerNationalityNameArabic}}"
+                }
+            }
+    ],
+    "Nationality": { 
+        "Id":  "{{lookups.GosiNationalityCode}}",
+        "Name": "{{lookups.GosiNationalityArabicName}}"
+    },
+    "CRActivities": [
+    {%- for activity in Est.RequestActivityInformation %}
+    {
+            "Id": "{{activity.RequestActivityISICCode}}",
+            "Name": "{{activity.RequestActivityArabicName}}"
+    }
+    {%- if forloop.last == false -%}
+    ,
+    {%- endif -%}
+    {%- endfor %}
+    ],
+    "Location": {
+        "BuildingNumber":  "{{Est.AddressInformation.AddressBuldingNo}}",
+        "AdditionalNo": "{{Est.AddressInformation.AddressAdditionalNumber}}",
+        "UnitNo": "{{Est.AddressInformation.AddressUnitNumber | default: 0}}",
+        "ZipCode":"{{Est.AddressInformation.AddressZipCode}}"
+    },
+    "CRRepresentative": {
+        "PartyId": "{{Est.ManagerInformation.ManagerInfoIdentityNo}}",
+        "Name": "{{Est.ManagerInformation.ManagerInfoNameAr}}",
+        "BirthDate":  "{{Est.ManagerInformation.ManagerInfoBirthDate  | date: '%s'}}",
+        "Nationality": {
+            "Id":  "{{lookups.GosiNationalityCode}}",
+            "Name": "{{lookups.GosiNationalityArabicName}}"
+        },
+        {%- if Est.ManagerInformation.ManagerInfoMobileNo[0] == '0' and  Est.ManagerInformation.ManagerInfoMobileNo[1] == '0' %}
+        {%- assign mob_size = Est.ManagerInformation.ManagerInfoMobileNo.size | minus: 2 %}
+         "Mobile": "{{Est.ManagerInformation.ManagerInfoMobileNo |  slice: 2,12 }}",
+            {%- else %}
+         "Mobile": "{{Est.ManagerInformation.ManagerInfoMobileNo}}",
+            {%- endif %}
+         "Email":  "{{Est.ManagerInformation.ManagerInfoEmail}}"
+    },
+    "City": {
+        "Id": "{{lookups.LookupCityBusinessCode}}",
+        "Name": "{{lookups.LookupCityBusinessName}}"
+    }
+}
