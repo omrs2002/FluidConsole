@@ -39,7 +39,10 @@ namespace FluidConsoleApp
             {{ 'now' | date: '%s' | plus: years | date: '%d-%m-%Y' }}
             ";
         }
-
+   internal static string NicVerifyCompanyTemplate()
+        {
+            return System.IO.File.ReadAllText("C:\\My Projects\\FluidConsole\\FluidConsoleApp\\Json\\Companies\\NICValidate.liquid"); ;
+        }
         internal static string MCTemplate()
         {
             return System.IO.File.ReadAllText("C:\\My Projects\\FluidConsole\\FluidConsoleApp\\Json\\MC Template.liquid"); ;

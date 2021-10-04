@@ -1,0 +1,45 @@
+{
+    "Input": {
+        "Request_Number": "{{company.requestId}}",
+        "New_700_ID": "{% raw %}{{company.New_700_ID}}{% endraw %}",
+        "Firm_Name":  "{{company.crInfo.coc.fullCocName}}",
+        {%- assign firstOwner = company.owners | first %}
+        "Firm_Nationality_Code": "{{firstOwner.nationalityLookup.code}}",
+        "Issue_DateU": "{{company.PaymentInformation.PaymentDate | date: '%s'}}",
+        {%- assign years = company.crInfo.crDuration | times: 365 | times: 86400 %}
+        "Expiry_DateU": "{{company.PaymentInformation.PaymentDate | date: '%s' | plus: years }}",
+        "LK_CR_Type": "{{company.bussinessTypeLookup.code}}",
+        "LK_CR_Location":"{{company.crInfo.crCityLookup.code}}",
+        "PO_Box": "{{company.nationalAddress.saudiAddress.postCode}}",
+        "Zip_Code":"{{company.nationalAddress.saudiAddress.postCode}}",
+        "Address":"{{company.nationalAddress.saudiAddress.addressLine1}}",
+        "Telephone":"{{company.creator.mobileNumber}}",
+        "Fax": 0,
+        "Capital":"{{company.crInfo.crCapital}}",
+        "Main_CR_Number": 0
+    },
+    "Inputlist": [
+        {%- if company.owners %}
+        {%- for owner in company.owners %}
+        {
+            "Owner_ID": "{{owner.identityNumber}}",
+            "LK_Relation_Code": "{{owner.LK_Relation_Code}}",
+            "Percentage": 0.0,
+            "Share": 0.0
+        }
+        {%- if forloop.last == false -%},{%- endif -%}
+        {%- endfor %}
+    {%-endif%}
+    ],
+    "ISICList": 
+    [
+    {%- if company.selectedActivity.activities %}
+        {%- for isic in company.selectedActivity.activities %}
+        {
+             "ISIC_Code": "{{isic.isicCode}}"
+        }
+        {%- if forloop.last == false -%},{%- endif -%}
+        {%- endfor %}
+    {%-endif%}
+    ]
+}

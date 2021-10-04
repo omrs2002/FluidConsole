@@ -12,9 +12,9 @@
         "Firm_Nationality_Code": {{Lookups.OwnerNationalityId}},
         "Issue_DateU": "{{Est.PaymentInformation.PaymentDate | date: '%s'}}",
         {%- assign years = Est.CrInformation.CrInfoDuration | times: 365 | times: 86400 %}
-        "Expiry_DateU": "  {{ Est.PaymentInformation.PaymentDate | date: '%s' | plus: years }}",
-        "LK_CR_Type": {{Lookups.LK_CR_Type}},
-        "LK_CR_Location":{{Lookups.LK_CR_Location}},
+        "Expiry_DateU": "{{Est.PaymentInformation.PaymentDate | date: '%s' | plus: years }}",
+        "LK_CR_Type": "{{Lookups.LK_CR_Type}}",
+        "LK_CR_Location":"{{Lookups.LK_CR_Location}}",
         "PO_Box": "{{Est.AddressInformation.AddressZipCode}}",
         "Zip_Code":"{{Est.AddressInformation.AddressZipCode}}",
         {%- comment %} PO_Box & Zip_Code {% endcomment %}

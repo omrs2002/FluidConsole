@@ -1,0 +1,326 @@
+{
+  "company": {
+    "requestId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "PaymentInformation": {
+      "RecieptNumber": "344544432",
+      "PaymentDate": "2021-09-29T00:00:00+03:00",
+      "BankId": "214",
+      "BankNumber": "1"
+    },
+    "creator": {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "identityNumber": "string",
+      "identityTypeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "identityAttachement": "string",
+      "identityIssueDate": "string",
+      "identityExpireDate": "string",
+      "birthDate": "string",
+      "birthDateHijri": "string",
+      "email": "string",
+      "mobileNumber": "0543456789",
+      "nationalityLookup": {
+        "nextStep": "string",
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "arabicName": "string",
+        "englishName": "string",
+        "code": "string",
+        "parentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "descriptionAr": "string",
+        "descriptionEn": "string"
+      },
+      "firstNameAr": "string",
+      "middleNameAr": "string",
+      "grandNameAr": "string",
+      "familyNameAr": "string",
+      "firstNameEn": "string",
+      "middleNameEn": "string",
+      "grandNameEn": "string",
+      "familyNameEn": "string",
+      "gender": 0,
+      "profileImage": "string"
+    },
+    "bussinessTypeLookup": {
+      "nextStep": "string",
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "arabicName": "string",
+      "englishName": "string",
+      "code": "1",
+      "parentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "descriptionAr": "string",
+      "descriptionEn": "string"
+    },
+    "crInfo": {
+      "crDuration": 0,
+      "crCapital": 0,
+      "capitalDescription": "string",
+      "crCityLookup": {
+        "nextStep": "string",
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "arabicName": "string",
+        "englishName": "string",
+        "code": "33",
+        "parentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "descriptionAr": "string",
+        "descriptionEn": "string"
+      },
+      "crRegionLookup": {
+        "nextStep": "string",
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "arabicName": "string",
+        "englishName": "string",
+        "code": "string",
+        "parentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "descriptionAr": "string",
+        "descriptionEn": "string"
+      },
+      "coc": {
+        "fullCocName": "Company full name",
+        "crFees": 0,
+        "chamberName": "string",
+        "chamberGrade": 0,
+        "chamberFees": 0,
+        "chamberFeesVat": 0,
+        "saudiPostFees": 0,
+        "saudiPostFeesVat": 0,
+        "totalFees": 0,
+        "totalVat": 0
+      }
+    },
+    "nationalAddress": {
+      "unitNumber": "string",
+      "floor": "string",
+      "unitTypeLookup": {
+        "nextStep": "string",
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "arabicName": "string",
+        "englishName": "string",
+        "code": "string",
+        "parentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "descriptionAr": "string",
+        "descriptionEn": "string"
+      },
+      "saudiAddress": {
+        "additionalNumber": "string",
+        "addressLine1": "string",
+        "addressLine2": "string",
+        "buildingNumber": "string",
+        "cityName": "string",
+        "cityNameAr": "string",
+        "cityId": "string",
+        "districtName": "string",
+        "districtNameAr": "string",
+        "districtId": "string",
+        "latitude": "string",
+        "longitude": "string",
+        "postCode": "string",
+        "regionName": "string",
+        "regionNameAr": "string",
+        "regionId": "string",
+        "streetName": "string",
+        "streetNameAr": "string"
+      }
+    },
+    "contacts": {
+      "mobileNo": "string",
+      "email": "string",
+      "phoneNumber": "string",
+      "isEcommerce": true,
+      "webSite": "string",
+      "maaroofId": "string"
+    },
+    "selectedActivity": {
+      "activities": [
+        {
+          "id": 0,
+          "isicCode": "745674574",
+          "arabicName": "string",
+          "englishName": "string",
+          "isMcRequiredLicense": true,
+          "isicClassifications": 0,
+          "parentClass": {
+            "id": 0,
+            "code": "string",
+            "arabicName": "string",
+            "englishName": "string"
+          },
+          "parentSection": {
+            "id": 0,
+            "code": "string",
+            "arabicName": "string",
+            "englishName": "string"
+          },
+          "licenseIssuer": {
+            "id": 0,
+            "code": "string",
+            "arabicName": "string",
+            "englishName": "string"
+          }
+        },
+        {
+          "id": 1,
+          "isicCode": "235245242",
+          "arabicName": "string",
+          "englishName": "string",
+          "isMcRequiredLicense": true,
+          "isicClassifications": 0,
+          "parentClass": {
+            "id": 0,
+            "code": "string",
+            "arabicName": "string",
+            "englishName": "string"
+          },
+          "parentSection": {
+            "id": 0,
+            "code": "string",
+            "arabicName": "string",
+            "englishName": "string"
+          },
+          "licenseIssuer": {
+            "id": 0,
+            "code": "string",
+            "arabicName": "string",
+            "englishName": "string"
+          }
+        }
+      ],
+      "classes": [
+        {
+          "id": 0,
+          "isicCode": "string",
+          "arabicName": "string",
+          "englishName": "string",
+          "isMcRequiredLicense": true,
+          "isicClassifications": 0,
+          "parentClass": {
+            "id": 0,
+            "code": "string",
+            "arabicName": "string",
+            "englishName": "string"
+          },
+          "parentSection": {
+            "id": 0,
+            "code": "string",
+            "arabicName": "string",
+            "englishName": "string"
+          },
+          "licenseIssuer": {
+            "id": 0,
+            "code": "string",
+            "arabicName": "string",
+            "englishName": "string"
+          }
+        }
+      ],
+      "sections": [
+        {
+          "id": 0,
+          "isicCode": "string",
+          "arabicName": "string",
+          "englishName": "string",
+          "isMcRequiredLicense": true,
+          "isicClassifications": 0,
+          "parentClass": {
+            "id": 0,
+            "code": "string",
+            "arabicName": "string",
+            "englishName": "string"
+          },
+          "parentSection": {
+            "id": 0,
+            "code": "string",
+            "arabicName": "string",
+            "englishName": "string"
+          },
+          "licenseIssuer": {
+            "id": 0,
+            "code": "string",
+            "arabicName": "string",
+            "englishName": "string"
+          }
+        }
+      ]
+    },
+    "financialYear": {
+      "startDay": 0,
+      "startMonth": 0,
+      "firstFinancialYearEndDate": "string",
+      "calendarTypeLookup": {
+        "nextStep": "string",
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "arabicName": "string",
+        "englishName": "string",
+        "code": "string",
+        "parentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "descriptionAr": "string",
+        "descriptionEn": "string"
+      }
+    },
+    "owners": [
+      {
+        "birthDate": "string",
+        "birthDateHijri": "string",
+        "email": "string",
+        "familyNameAr": "string",
+        "familyNameEn": "string",
+        "firstNameAr": "string",
+        "firstNameEn": "string",
+        "gender": 1,
+        "grandNameAr": "string",
+        "grandNameEn": "string",
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "identityAttachement": "string",
+        "identityExpireDate": "string",
+        "identityIssueDate": "string",
+        "identityNumber": "4523452345",
+        "identityTypeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "middleNameAr": "string",
+        "middleNameEn": "string",
+        "mobileNumber": "string",
+        "nationalityLookup": {
+          "nextStep": "string",
+          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "arabicName": "string",
+          "englishName": "string",
+          "code": "966",
+          "parentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "descriptionAr": "string",
+          "descriptionEn": "string"
+        },
+        "profileImage": "string"
+      },
+      {
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "identityNumber": "674673465",
+        "identityTypeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "identityAttachement": "string",
+        "identityIssueDate": "string",
+        "identityExpireDate": "string",
+        "birthDate": "string",
+        "birthDateHijri": "string",
+        "email": "string",
+        "mobileNumber": "string",
+        "nationalityLookup": {
+          "nextStep": "string",
+          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "arabicName": "string",
+          "englishName": "string",
+          "code": "string",
+          "parentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "descriptionAr": "string",
+          "descriptionEn": "string"
+        },
+        "firstNameAr": "string",
+        "middleNameAr": "string",
+        "grandNameAr": "string",
+        "familyNameAr": "string",
+        "firstNameEn": "string",
+        "middleNameEn": "string",
+        "grandNameEn": "string",
+        "familyNameEn": "string",
+        "gender": 0,
+        "profileImage": "string"
+
+      }
+    ]
+  }
+}

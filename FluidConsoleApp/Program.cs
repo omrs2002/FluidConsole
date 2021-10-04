@@ -19,7 +19,9 @@ namespace FluidConsoleApp
             //TestSimpleTemplate();
             //TestGOSItemplate();
             //TestNICVerifyTemplate();
-            TestMC();
+            //TestMC();
+            TestCompanyVerify();
+
         }
 
         static void TestNICVerifyTemplate()
@@ -61,6 +63,26 @@ namespace FluidConsoleApp
 
 
         }
+
+        static void TestCompanyVerify()
+        {
+            string temp = Templates.NicVerifyCompanyTemplate();
+            var parser = new FluidParser();
+            string big_json = System.IO.File.ReadAllText("C:\\My Projects\\FluidConsole\\FluidConsoleApp\\Json\\Companies\\BroadCastDTO.json");
+            string sm = temp;
+            string cres = FluidHelper.FluidMapper(big_json, sm);
+            string path = System.Reflection.Assembly.GetExecutingAssembly().Location.Replace("FluidConsoleApp.dll", "NIC Company Verify.json");
+            System.IO.File.WriteAllText(path, cres);
+            Console.WriteLine("Again (Y/N):");
+            var r = Console.ReadLine();
+            if (r.ToUpper() == "Y")
+            {
+                TestCompanyVerify();
+            }
+
+
+        }
+
         static void TestGOSItemplate()
         {
             string GosiTemplate = Templates.GOSITemplate();
