@@ -4,15 +4,19 @@
         "New_700_ID": "{% raw %}{{NEW_700_ID}}{% endraw %}",
         "Firm_Name":  "{{company.crInfo.coc.fullCocName}}",
         {%- assign firstOwner = company.owners | first %}
+        
         "Firm_Nationality_Code": "{{firstOwner.nationalityLookup.code}}",
         "Issue_DateU": "{{company.PaymentInformation.PaymentDate | date: '%s'}}",
         {%- assign years = company.crInfo.crDuration | times: 365 | times: 86400 %}
         "Expiry_DateU": "{{company.PaymentInformation.PaymentDate | date: '%s' | plus: years }}",
+        {%- comment %} need to check {% endcomment %}
         "LK_CR_Type": "{{company.bussinessTypeLookup.code}}",
         "LK_CR_Location":"{{company.crInfo.crCityLookup.code}}",
         "PO_Box": "{{company.nationalAddress.saudiAddress.postCode}}",
         "Zip_Code":"{{company.nationalAddress.saudiAddress.postCode}}",
         "Address":"{{company.nationalAddress.saudiAddress.addressLine1}}",
+        {%- comment %} ///////////////////////// {% endcomment %}
+
         "Telephone":"{{company.creator.mobileNumber}}",
         "Fax": 0,
         "Capital":"{{company.crInfo.crCapital}}",

@@ -1,0 +1,126 @@
+﻿{
+    "ReferenceNo": "{{company.requestId}}",
+    "TransactionType": {
+        "Id": 2,
+        "Name": "Branch CR"
+    },
+    "CRNo": "{% raw %}{{MC.CRNo}}{% endraw %}",
+    "NationalNo": "{% raw %}{{NicVerify.NEW_700_ID}}{% endraw %}",
+    "IsMain": true,
+    "MainCR": "0",
+    "BusinessType": {
+        "Id": "{{company.bussinessTypeLookup.code}}",
+        "Name": "{{company.bussinessTypeLookup.arabicName}}"
+    },
+    "Location": {
+        "Id": "{{company.crInfo.crCityLookup.code}}",
+        "Name": "{{company.crInfo.crCityLookup.arabicName}}"
+    },
+    "CRName": "{{company.crInfo.coc.fullCocName}}",
+    "IssueDate": "{{company.PaymentInformation.PaymentDate | date: '%s'}}",
+    {%- assign years = company.CrInformation.CrInfoDuration | times: 365 | times: 86400 %}
+    "ExpiryDate": "  {{ company.PaymentInformation.PaymentDate | date: '%s' | plus: years }}",
+    "Nationality": {
+        {%- assign first_owner = company.owners | first %}
+        {%- assign Nation = lookups.GaztLookups.ManagersNationalities | where: 'Id', first_owner.member.nationalityLookup.id | first %}
+         "Id": "{{Nation.Code}}",
+         "Name": "{{Nation.Name}}"
+    },
+    "ZipCode": "{{company.nationalAddress.saudiAddress.postCode}}",
+    "POBOX1": "{{company.nationalAddress.saudiAddress.addressLine1}}",
+    "City": {
+        "Id": "{{company.crInfo.crCityLookup.code}}",
+        "Name": "{{company.crInfo.crCityLookup.arabicName}}"
+    },
+    "eCR_Street":  "{{company.nationalAddress.saudiAddress.streetNameAr}}",
+    "eCR_Building": "{{company.nationalAddress.saudiAddress.buildingNumber}}",
+    "eCR_OfficeNumber": "{{company.nationalAddress.saudiAddress.unitNumber}}",
+    "Capital":"{{company.crInfo.crCapital}}",
+    "Company_PaidCapital": {{company.crInfo.crCapital}}",
+    "Company_ShareCount": "{{owner.partnerShares}}",
+    "Company_SharePrice": "{{owner.partnerShares}}",
+    "FiscalYear": {
+        "Id": "{{company.financialYear.calendarTypeLookup.code}}",
+        "Name": "{{company.financialYear.calendarTypeLookup.arabicName}}"
+    },
+    "FiscalYearEndDay": "{{company.financialYear.startDay}}",
+    "FiscalYearEndMonth": "{{company.financialYear.startMonthy}}",
+    "CRParties": [
+        {%- comment %} Start filling owners {% endcomment %}
+            {%- for owner in company.owners %}
+            {
+                 {%- assign fullname = owner.member.firstNameAr | append: " " |  append:  owner.member.middleNameAr | append: " " |  append: owner.member.grandNameAr | append: " " |  append:  owner.member.familyNameAr %}
+                "Name": "{{fullname | strip}}",
+                "RelationType": {
+                  "Id": "{{owner.relationCode}}",
+                  "Name": "{{owner.relationNameAr}}"
+                },
+                "Nationality": {
+                    {%- assign Nation = lookups.GaztLookups.OwnerNationalities  | where: 'Id', owner.member.nationalityLookup.id | first %}
+                    "Id": "{{Nation.Code}}",
+                    "Name": "{{Nation.Name}}"
+                },
+                "PartyId":  "{{owner.member.identityNumber}}",
+                "PartyIDType": null,
+                "PartyPercint": 0.0,
+                "PartyGross": 0.0,
+                "PartyShareCount": "{{owner.partnerShares}}",
+                "BirthDateU": "{{owner.member.birthDate | date: '%s'}}"
+            }
+            {%- if forloop.last == false -%},{%- endif -%}
+            {%- endfor %}
+            {%- comment %} Start filling managers {% endcomment %}
+            {%- for manager in company.managers -%}
+            ,
+            {
+              {%- assign mfullname = manager.member.firstNameAr | append: " " |  append:  manager.member.middleNameAr | append: " " |  append: manager.member.grandNameAr | append: " " |  append:  manager.member.familyNameAr %}
+                "Name": "{{mfullname | strip}}",
+                "RelationType": {
+                    "Id": "{{manager.relationCode}}",
+                    "Name": "{{manager.relationNameAr}}"
+                },
+                "Nationality": {
+                    {%- assign Nation = lookups.GaztLookups.OwnerNationalities  | where: 'Id', manager.member.nationalityLookup.id | first %}
+                    "Id": "{{Nation.Code}}",
+                    "Name": "{{Nation.Name}}"
+                },
+                "PartyId":  "{{manager.member.identityNumber}}",
+                "PartyIDType": null,
+                "PartyPercint": 0.0,
+                "PartyGross": 0.0,
+                "PartyShareCount": 0.0,
+                "BirthDateU": "{{manager.member.birthDate | date: '%s'}}"
+             }
+            {%- endfor %}
+    ],
+    "CRRepresentative": {
+    {%- assign representer = company.owners | first %}
+    {%- assign representerFullname = representer.member.firstNameAr | append: " " |  append:  representer.member.middleNameAr | append: " " |  append: representer.member.grandNameAr | append: " " |  append:  representer.member.familyNameAr %}
+        "Name": "{{representerFullname | strip}}",
+       "Nationality": {
+                    {%- assign Nation = lookups.GaztLookups.ManagersNationalities  | where: 'Id', representer.member.nationalityLookup.code | first %}
+                    "Id": "{{Nation.Code}}",
+                    "Name": "{{Nation.Name}}"
+                },
+        "PartyId": "{{representer.member.identityNumber}}",
+        "PartyIdType": null,
+        "BirthDateU": "{{representer.member.birthDate | date: '%s'}}",
+        {%- if representer.member.mobileNumber[0] == '0' and  representer.member.mobileNumber[1] == '0' %}
+        {%- assign mob_size = representer.member.mobileNumber.size | minus: 2 %}
+         "Mobile": "{{representer.member.mobileNumber |  slice: 2,12 }}",
+            {%- else %}
+         "Mobile": "{{representer.member.mobileNumber}}",
+            {%- endif %}
+        "Email": "{{representer.member.email}}"
+    },
+    "CRActivities":  [
+    {%- for activity in company.selectedActivity.activities %}
+    {
+            "Id": "{{activity.isicCode}}",
+            "Name": "{{activity.arabicName}}"
+    }
+    {%- if forloop.last == false -%},{%- endif -%}
+    {%- endfor %}
+    ],
+    "CRLicenses": []
+}

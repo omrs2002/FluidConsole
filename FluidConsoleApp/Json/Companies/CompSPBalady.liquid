@@ -1,0 +1,62 @@
+{%- for license in Momra.Licenses -%}
+ {
+	"RequestData": {
+		{%- assign days = 365 | times: 86400 %}
+		"EndDateGregoriansU": "{{company.PaymentInformation.PaymentDate |date: '%s'|plus: days  }}",
+		"InvoiceAmount": "{{license.SPBillInfo.TotalAmount}}",
+		"PaymentMethod": "2",
+		"SettlementAmount": "{{license.SPBillInfo.TotalAmount}}",
+		"StartDateGregoriansU": "{{company.PaymentInformation.PaymentDate | date: '%s' }}",
+		"SubscriptionDuration": "365",
+		"CorporateDetails": {
+			"CID": "{% raw %}{{balady.licenseId}} {% endraw %}",
+			"CIDType": "9",
+			"CRActivities": "",
+			"CRDescriptiveAddress": "",
+			"CorporateNameAr": "{{license.LicenseName}}",
+			"CorporateNameEn": "",
+			"CorporateSize": "0",
+			"CustomerCategoryCode": "5",
+	        "EmailId": "{{company.creator.email}}",
+			"ISICClassificationDetails": [
+				{
+					"ISICClassificationCode": "{{ license.BaladyDetailedActivityId}}",
+					"ISICClassificationName": "{{license.BaladyDetailedActivityNameAr}}"
+				}
+			],
+			"IsMain": "true",
+			"MobileNumber": "{{company.creator.mobileNumber}}",
+			"ParentCorporateCID": "0",
+			"OwnerIdNo":[
+				{%- for owner in company.owners %}
+				"{{owner.member.identityNumber}}"
+				{%- if forloop.last == false -%},{%- endif -%}
+				{%- endfor %}
+			],
+			{%- assign days = 365 | times: 86400 %}
+			"PermitDateU":"{{company.PaymentInformation.PaymentDate| date: '%s' }}",
+			"PermitExpiryDateU":"{{company.PaymentInformation.PaymentDate | date: "%s" | plus: days  }}",
+			"PermitSourceCity": "",
+			"SevenHundredNumber": "{% raw %}{{NEW_700_ID}}{% endraw %}"
+		},
+		"NationalAddressDetails": {
+			"AdditionalNumber": "{{license.Address.AdditionalNo}}",
+			"BuildingNumber": "{{license.Address.BuildingNo}}",
+			"DistrictAreaAR": "{{license.Address.DistrictNameAr}}",
+			"DistrictAreaEN": "{{license.Address.DistrictNameEn}}",
+			"FloorNumber": "{{license.Address.FloorNumber}}",
+			"GISCityCode": "{{license.Address.CityId}}",
+			"GISRegionCode": "{{license.Address.RegionId}}",
+			"Latitudes": "{{license.Address.Latitude}}",
+			"Longitude": "{{license.Address.Longitude}}",
+			"OccupationModeCode": "1",
+			"StreetNameAR": "{{license.Address.StreetNameAr}}",
+			"StreetNameEN": "{{license.Address.StreetNameEn}}",
+			"UnitNumber": "{{license.Address.UnitNo}}",
+		  {%- assign unitTypeLookup = Lookups.LicenseLookups | where: 'LicenseUnitType.LicenseId', license.Id | first %}
+			"UnitTypeId": "{{unitTypeLookup.LicenseUnitType.UnitType}}",
+			"ZipCode": "{{license.Address.PostalCode}}"
+		}
+	}
+}$
+{%- endfor -%}

@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace LiquidHelper
 {
+    public class PaymentInformation
+    {
+        public string RecieptNumber { get; set; }
+        public DateTime? PaymentDate { get; set; }
+        public string BankId { get; set; }
+        public string BankNumber { get; set; }
+    }
+
     public class CompanyLookup
     {
         public BaladyCrLookup BaladyLookups { get; set; }

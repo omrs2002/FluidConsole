@@ -12,6 +12,7 @@
         "Id": "{{company.bussinessTypeLookup.code}}",
         "Name": "{{company.bussinessTypeLookup.arabicName}}"
     },
+    {%- comment %} Check CRName {% endcomment %}
     "CRName": "{{company.crInfo.coc.fullCocName}}",
 	"IssueDate": "{{company.PaymentInformation.PaymentDate | date: '%s'}}",
     {%- assign years = company.CrInformation.CrInfoDuration | times: 365 | times: 86400 %}
@@ -23,15 +24,16 @@
             {
                 "PartyId":  "{{owner.member.identityNumber}}",
                 {%- assign fullname = owner.member.firstNameAr | append: " " |  append:  owner.member.middleNameAr | append: " " |  append: owner.member.grandNameAr | append: " " |  append:  owner.member.familyNameAr %}
-                "Name": "{{fullname}}",
+                "Name": "{{fullname | strip}}",
                 "Birthdate": "{{owner.birthDate | date: '%s'}}",
                 "RelationType": {
                     "Id": "{{owner.relationCode}}",
-                    "Name": ""
+                    "Name": "{{owner.relationNameAr}}"
                 },
                 "Nationality": {
-                    "Id": "{{owner.member.nationalityLookup.code}}",
-                    "Name": "{{owner.member.nationalityLookup.arabicName}}"
+                    {%- assign Nation = lookups.GosiLookups.OwnerNationalities  | where: 'id', owner.member.nationalityLookup.id | first %}
+                    "Id": "{{Nation.Code}}",
+                    "Name": "{{Nation.Name}}"
                 }
             }
             {%- if forloop.last == false -%},{%- endif -%}
@@ -40,24 +42,27 @@
             {%- for manager in company.managers -%}
             ,
             {
-                "PartyId":  "{{manager.identityNumber}}",
+                "PartyId":  "{{manager.member.identityNumber}}",
                 {%- assign mfullname = manager.member.firstNameAr | append: " " |  append:  manager.member.middleNameAr | append: " " |  append: manager.member.grandNameAr | append: " " |  append:  manager.member.familyNameAr %}
-                "Name": "{{mfullname }}",
+                "Name": "{{mfullname | strip}}",
                 "Birthdate": "{{manager.member.birthDate | date: '%s'}}",
                 "RelationType": {
-                    "Id": "{{owner.relationCode}}",
-                    "Name": ""
+                    "Id": "{{manager.relationCode}}",
+                    "Name": "{{manager.relationNameAr}}"
                 },
                 "Nationality": {
-                    "Id": "{{manager.member.nationalityLookup.code}}",
-                    "Name": "{{manager.member.nationalityLookup.arabicName}}"
+                    {%- assign Nation = lookups.GosiLookups.ManagersNationalities | where: 'id', manager.member.nationalityLookup.id | first %}
+                    "Id": "{{Nation.Code}}",
+                    "Name": "{{Nation.Name}}"
                 }
             }
             {%- endfor %}
     ],
     "Nationality": { 
-        "Id":  "{{owner.member.nationalityLookup.code}}",
-        "Name": "{{owner.member.nationalityLookup.arabicName}}"
+        {%- assign first_owner = company.owners | first %}
+        {%- assign Nation = lookups.GosiLookups.ManagersNationalities | where: 'id', first_owner.member.nationalityLookup.id | first %}
+         "Id": "{{Nation.Code}}",
+         "Name": "{{Nation.Name}}"
     },
     "CRActivities": [
     {%- for activity in company.selectedActivity.activities %}
@@ -79,15 +84,16 @@
 
          "PartyId":  "{{representer.member.identityNumber}}",
             {%- assign representerFullname = representer.member.firstNameAr | append: " " |  append:  representer.member.middleNameAr | append: " " |  append: representer.member.grandNameAr | append: " " |  append:  representer.member.familyNameAr %}
-            "Name": "{{representerFullname}}",
+            "Name": "{{representerFullname | strip}}",
             "Birthdate": "{{representer.member.birthDate | date: '%s'}}",
             "RelationType": {
                 "Id": "{{representer.relationCode}}",
                 "Name": ""
             },
             "Nationality": {
-                "Id": "{{representer.member.nationalityLookup.code}}",
-                "Name": "{{representer.member.nationalityLookup.arabicName}}"
+                {%- assign Nation = lookups.GosiLookups.ManagersNationalities | where: 'Id', representer.member.nationalityLookup.id | first %}
+                 "Id": "{{Nation.Code}}",
+                 "Name": "{{Nation.Name}}"
             },
         {%- if representer.member.mobileNumber[0] == '0' and  representer.member.mobileNumber[1] == '0' %}
         {%- assign mob_size = representer.mobileNumber.size | minus: 2 %}
@@ -98,7 +104,7 @@
          "Email":  "{{representer.member.email}}"
     },
     "City": {
-        "Id": "{{lookups.LookupCityBusinessCode}}",
-        "Name": "{{lookups.LookupCityBusinessName}}"
+        "Id": "{{company.crInfo.crCityLookup.code}}",
+        "Name": "{{company.crInfo.crCityLookup.arabicName}}"
     }
 }

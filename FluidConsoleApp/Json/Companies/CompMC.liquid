@@ -1,11 +1,7 @@
 {
     "RequestReferance": "{{company.requestId}}",
-    {%- if company.PaymentInformation  %}
-        "RecieptNumber": "{{company.PaymentInformation.RecieptNumber}}",
-        "PaymentDateU": "{{company.PaymentInformation.PaymentDate | date: '%s'}}",
-    {%-else%}
-        "RecieptNumber": "",
-        "PaymentDateU": {{ "now" | date: '%s' }},
-    {%- endif%}
-    "NationalNumber": "{{company.creator.identityNumber}}"
+    "RecieptNumber": "{{company.PaymentInformation.RecieptNumber}}",
+    "PaymentDateU": "{{company.PaymentInformation.PaymentDate | date: '%s'}}",
+    "NationalNumber": "{% raw %}{{NicVerify.NEW_700_ID}}{% endraw %}"
+    
 }

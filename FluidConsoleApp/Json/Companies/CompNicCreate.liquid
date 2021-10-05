@@ -1,7 +1,7 @@
 {
     "Input": {
         "Request_Number": "{{company.requestId}}",
-        "New_700_ID": "{% raw %}{{NEW_700_ID}}{% endraw %}",
+        "New_700_ID": "{% raw %}{{NicVerify.NEW_700_ID}}{% endraw %}",
         "Firm_Name":  "{{company.crInfo.coc.fullCocName}}",
         {%- assign firstOwner = company.owners | first %}
         "Firm_Nationality_Code": "{{firstOwner.nationalityLookup.code}}",

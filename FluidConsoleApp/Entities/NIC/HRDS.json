@@ -1,0 +1,66 @@
+{
+    "ReferenceNo": "9b5c49aa-2b2e-190e-833a-39fd3fe5f24e",
+    "CRNumber": "0",
+    "NationalNo": "7100166730",
+    "IsMain": "true",
+    "MainCR": "",
+    "LaborOfficeNo": "1",
+    "BusinessType": {
+        "ID": "101",
+        "Name": "مؤسسة فردية"
+    },
+    "Location": {
+        "ID": "1010",
+        "Name": "الرياض"
+    },
+    "CRName": "شقق فهد محمد معاذ خالد للشقق الفندقية",
+    "IssueDateU": "1624233600",
+    "ExpiryDateU": "1687305600",
+    "Nationality": {
+        "Id": "SAU",
+        "Name": "سعودي"
+    },
+    "ZipCode": "13225",
+    "POBOX1": "4444 الرفعه - حي اشبيلية",
+    "City": {
+        "ID": "1010",
+        "Name": "الرياض"
+    },
+    "Street": "منطقة الرياض",
+    "FiscalYear": {
+        "ID": "2",
+        "Name": "Hijri"
+    },
+    "CRParties": [{
+            "PartyId": "1121578296",
+            "Name": "فهد محمد معاذ خالد",
+            "BirthdateU": "220233600",
+            "RelationType": {
+                "ID": "1",
+                "Name": "مالك المؤسسة"
+            },
+            "Nationality": {
+                "Id": "SAU",
+                "Name": "سعودي"
+            }
+        }
+    ],
+    "CRRepresentative": {
+        "Name": "فهد محمد معاذ خالد",
+        "Nationality": {
+            "Id": "SAU",
+            "Name": "سعودي"
+        },
+        "PartyId": "1121578296",
+        "PartyIdType": "NID",
+        "BirthDateU": "220233600",
+        "Mobile": "966590000922",
+        "Email": "malak@gmail.com"
+    },
+    "CRActivities": [{
+            "Id": "551011",
+            "Name": "الفنادق"
+        }
+    ],
+    "CRLicenses": []
+}

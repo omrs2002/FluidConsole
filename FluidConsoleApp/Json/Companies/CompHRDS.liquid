@@ -1,0 +1,112 @@
+﻿{
+    "ReferenceNo": "{{company.requestId}}",
+    "CRNumber": "{% raw %}{{MC.CRNo}}{% endraw %}",
+    "NationalNo": "{% raw %}{{NicVerify.NEW_700_ID}}{% endraw %}",
+    "IsMain": "true",
+    "MainCR": "0",
+    "LaborOfficeNo": "{{lookups.HrdsLookups.LaborOffice.Code}}",
+    "BusinessType": {
+        "Id": "{{company.bussinessTypeLookup.code}}",
+        "Name": "{{company.bussinessTypeLookup.arabicName}}"
+    },
+    "Location": {
+        "Id": "{{company.crInfo.crCityLookup.code}}",
+        "Name": "{{company.crInfo.crCityLookup.arabicName}}"
+    },
+    "CRName": "{{company.crInfo.coc.fullCocName}}",
+    "IssueDate": "{{company.PaymentInformation.PaymentDate | date: '%s'}}",
+    {%- assign years = company.CrInformation.CrInfoDuration | times: 365 | times: 86400 %}
+    "ExpiryDate": "  {{ company.PaymentInformation.PaymentDate | date: '%s' | plus: years }}",
+
+    "Nationality": {
+    {%- assign first_owner = company.owners | first %}
+        {%- assign Nation = lookups.HrdsLookups.ManagersNationalities | where: 'Id', first_owner.member.nationalityLookup.id | first %}
+         "Id": "{{Nation.Code}}",
+         "Name": "{{Nation.Name}}"
+    },
+    "ZipCode": "{{company.nationalAddress.saudiAddress.postCode}}",
+    "POBOX1": "{{company.nationalAddress.saudiAddress.addressLine1}}",
+    "City": {
+        "Id": "{{company.crInfo.crCityLookup.code}}",
+        "Name": "{{company.crInfo.crCityLookup.arabicName}}"
+    },
+    "eCR_Street":  "{{company.nationalAddress.saudiAddress.streetNameAr}}",
+    "FiscalYear": {
+        "Id": "{{company.financialYear.calendarTypeLookup.code}}",
+        "Name": "{{company.financialYear.calendarTypeLookup.arabicName}}"
+    },
+    "CRParties": 
+    [
+            {%- comment %} Start filling owners {% endcomment %}
+            {%- for owner in company.owners %}
+            {
+                    "PartyId": "{{owner.member.identityNumber}}",
+                    {%- assign fullname = owner.member.firstNameAr | append: " " |  append:  owner.member.middleNameAr | append: " " |  append: owner.member.grandNameAr | append: " " |  append:  owner.member.familyNameAr %}
+                    "Name": "{{fullname | strip}}",
+                    "BirthdateU": "{{owner.member.birthDate | date: '%s'}}",
+                    "RelationType": 
+                    {
+                        "Id": "{{owner.relationCode}}",
+                        "Name": "{{owner.relationNameAr}}"
+                    },
+                    "Nationality": 
+                    {
+                        {%- assign Nation = lookups.HrdsLookups.OwnerNationalities  | where: 'Id', owner.member.nationalityLookup.id | first %}
+                        "Id": "{{Nation.Code}}",
+                        "Name": "{{Nation.Name}}"
+                    }
+            }
+            {%- if forloop.last == false -%},{%- endif -%}
+            {%- endfor %}
+            {%- comment %} Start filling managers {% endcomment %}
+            {%- for manager in company.managers -%}
+            ,
+            {
+                "PartyId": "{{manager.member.identityNumber}}",
+                {%- assign mfullname = manager.member.firstNameAr | append: " " |  append:  manager.member.middleNameAr | append: " " |  append: manager.member.grandNameAr | append: " " |  append:  manager.member.familyNameAr %}
+                "Name": "{{mfullname  | strip}}",
+                "BirthdateU": "{{manager.member.birthDate | date: '%s'}}",
+                "RelationType": {
+                    "Id": "{{manager.relationCode}}",
+                    "Name": "{{manager.relationNameAr}}"
+                },
+                "Nationality": {
+                    {%- assign Nation = lookups.HrdsLookups.OwnerNationalities  | where: 'Id', manager.member.nationalityLookup.id | first %}
+                    "Id": "{{Nation.Code}}",
+                    "Name": "{{Nation.Name}}"
+                }
+            }
+            {%- endfor %}
+    ],
+    "CRRepresentative": {
+    {%- assign representer = company.managers | first %}
+        {%- assign representerFullname = representer.member.firstNameAr | append: " " |  append:  representer.member.middleNameAr | append: " " |  append: representer.member.grandNameAr | append: " " |  append:  representer.member.familyNameAr %}
+        "Name": "{{representerFullname | strip}}",
+        "Nationality": 
+         {
+                {%- assign Nation = lookups.HrdsLookups.ManagersNationalities  | where: 'Id', representer.member.nationalityLookup.code | first %}
+                "Id": "{{Nation.Code}}",
+                "Name": "{{Nation.Name}}"
+         },
+        "PartyId": "{{representer.member.identityNumber}}",
+        "PartyIdType": "NID",
+        "BirthDateU": "{{representer.member.birthDate | date: '%s'}}",
+        {%- if representer.member.mobileNumber[0] == '0' and  representer.member.mobileNumber[1] == '0' %}
+        {%- assign mob_size = representer.member.mobileNumber.size | minus: 2 %}
+         "Mobile": "{{representer.member.mobileNumber |  slice: 2,12 }}",
+            {%- else %}
+         "Mobile": "{{representer.member.mobileNumber}}",
+            {%- endif %}
+        "Email": "{{representer.member.email}}"
+    },
+    "CRActivities": [
+    {%- for activity in company.selectedActivity.activities %}
+    {
+            "Id": "{{activity.isicCode}}",
+            "Name": "{{activity.arabicName}}"
+    }
+    {%- if forloop.last == false -%},{%- endif -%}
+    {%- endfor %}
+    ],
+    "CRLicenses": []
+}
