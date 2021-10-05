@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Fluid;
 using Fluid.Values;
-using FluidConsoleApp.Entities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -17,7 +16,7 @@ namespace FluidConsoleApp
         {
 
             //TestSimpleTemplate();
-            //TestGOSItemplate();
+            TestGOSItemplate();
             //TestNICVerifyTemplate();
             //TestMC();
             TestCompanyVerify();
@@ -85,40 +84,18 @@ namespace FluidConsoleApp
 
         static void TestGOSItemplate()
         {
-            string GosiTemplate = Templates.GOSITemplate();
+            string temp = Templates.GosiTemplate();
             var parser = new FluidParser();
-
-            var Est = FullTemplate.GetFilledInstance();
-
-            var options = new TemplateOptions();
-            options.MemberAccessStrategy.Register<FullTemplate>();
-            options.MemberAccessStrategy.Register<SbcEstablishmentSummaryResponseModel>();
-            options.MemberAccessStrategy.Register<CrInformation>();
-            options.MemberAccessStrategy.Register<Lookups>();
-            options.MemberAccessStrategy.Register<TradeNameInformation>();
-            options.MemberAccessStrategy.Register<PaymentInformation>();
-            options.MemberAccessStrategy.Register<ManagerInformation>();
-            options.MemberAccessStrategy.Register<OwnerInformation>();
-            options.MemberAccessStrategy.Register<RequestActivityInformation>();
-            options.MemberAccessStrategy.Register<CRParty>();
-            options.MemberAccessStrategy.Register<Nationality>();
-            options.MemberAccessStrategy.Register<RelationType>();
-
-            if (parser.TryParse(GosiTemplate, out var template, out var error))
-            {
-                var context = new TemplateContext(Est, options);
-                string path = System.Reflection.Assembly.GetExecutingAssembly().Location.Replace("FluidConsoleApp.dll", "GOSI.json");
-                System.IO.File.WriteAllText(path, template.Render(context));
-            }
-            else
-            {
-                Console.WriteLine($"Error: {error}");
-            }
+            string big_json = System.IO.File.ReadAllText("C:\\My Projects\\FluidConsole\\FluidConsoleApp\\Entities\\NIC\\big_json.json");
+            string sm = temp;
+            string cres = FluidHelper.FluidMapper(big_json, sm);
+            string path = System.Reflection.Assembly.GetExecutingAssembly().Location.Replace("FluidConsoleApp.dll", "Gosi.json");
+            System.IO.File.WriteAllText(path, cres);
             Console.WriteLine("Again (Y/N):");
             var r = Console.ReadLine();
             if (r.ToUpper() == "Y")
             {
-                TestGOSItemplate();
+                TestCompanyVerify();
             }
 
 

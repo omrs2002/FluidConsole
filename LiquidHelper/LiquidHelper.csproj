@@ -224,6 +224,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompanyLookup.cs" />
     <Compile Include="FluidHelper.cs" />
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>

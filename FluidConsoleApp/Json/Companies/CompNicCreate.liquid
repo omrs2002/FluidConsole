@@ -1,7 +1,7 @@
 {
     "Input": {
         "Request_Number": "{{company.requestId}}",
-        "New_700_ID": "{% raw %}{{company.New_700_ID}}{% endraw %}",
+        "New_700_ID": "{% raw %}{{NEW_700_ID}}{% endraw %}",
         "Firm_Name":  "{{company.crInfo.coc.fullCocName}}",
         {%- assign firstOwner = company.owners | first %}
         "Firm_Nationality_Code": "{{firstOwner.nationalityLookup.code}}",
@@ -16,16 +16,16 @@
         "Telephone":"{{company.creator.mobileNumber}}",
         "Fax": 0,
         "Capital":"{{company.crInfo.crCapital}}",
-        "Main_CR_Number": 0
+        "Main_CR_Number": "0"
     },
     "Inputlist": [
         {%- if company.owners %}
         {%- for owner in company.owners %}
         {
-            "Owner_ID": "{{owner.identityNumber}}",
-            "LK_Relation_Code": "{{owner.LK_Relation_Code}}",
+            "Owner_ID": "{{owner.member.identityNumber}}",
+            "LK_Relation_Code": "{{owner.relationCode}}",
             "Percentage": 0.0,
-            "Share": 0.0
+            "Share": "{{owner.partnerShares}}"
         }
         {%- if forloop.last == false -%},{%- endif -%}
         {%- endfor %}

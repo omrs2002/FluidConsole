@@ -1,0 +1,104 @@
+﻿{
+    "ReferenceNo": "{{company.requestId}}",
+    "TransactionType": {
+        "Id": 1,
+        "Name": "New CR"
+    },
+    "CRNo": "{% raw %}{{MC.CRNo}}{% endraw %}",
+    "NationalNo": "{% raw %}{{NicVerify.NEW_700_ID}}{% endraw %}",
+    "IsMain": "true",
+    "MainCR": 0,
+    "BusinessType": {
+        "Id": "{{company.bussinessTypeLookup.code}}",
+        "Name": "{{company.bussinessTypeLookup.arabicName}}"
+    },
+    "CRName": "{{company.crInfo.coc.fullCocName}}",
+	"IssueDate": "{{company.PaymentInformation.PaymentDate | date: '%s'}}",
+    {%- assign years = company.CrInformation.CrInfoDuration | times: 365 | times: 86400 %}
+    "ExpiryDate": "  {{ company.PaymentInformation.PaymentDate | date: '%s' | plus: years }}",
+    "CRParties": 
+    [
+            {%- comment %} Start filling owners {% endcomment %}
+            {%- for owner in company.owners %}
+            {
+                "PartyId":  "{{owner.member.identityNumber}}",
+                {%- assign fullname = owner.member.firstNameAr | append: " " |  append:  owner.member.middleNameAr | append: " " |  append: owner.member.grandNameAr | append: " " |  append:  owner.member.familyNameAr %}
+                "Name": "{{fullname}}",
+                "Birthdate": "{{owner.birthDate | date: '%s'}}",
+                "RelationType": {
+                    "Id": "{{owner.relationCode}}",
+                    "Name": ""
+                },
+                "Nationality": {
+                    "Id": "{{owner.member.nationalityLookup.code}}",
+                    "Name": "{{owner.member.nationalityLookup.arabicName}}"
+                }
+            }
+            {%- if forloop.last == false -%},{%- endif -%}
+            {%- endfor %}
+            {%- comment %} Start filling managers {% endcomment %}
+            {%- for manager in company.managers -%}
+            ,
+            {
+                "PartyId":  "{{manager.identityNumber}}",
+                {%- assign mfullname = manager.member.firstNameAr | append: " " |  append:  manager.member.middleNameAr | append: " " |  append: manager.member.grandNameAr | append: " " |  append:  manager.member.familyNameAr %}
+                "Name": "{{mfullname }}",
+                "Birthdate": "{{manager.member.birthDate | date: '%s'}}",
+                "RelationType": {
+                    "Id": "{{owner.relationCode}}",
+                    "Name": ""
+                },
+                "Nationality": {
+                    "Id": "{{manager.member.nationalityLookup.code}}",
+                    "Name": "{{manager.member.nationalityLookup.arabicName}}"
+                }
+            }
+            {%- endfor %}
+    ],
+    "Nationality": { 
+        "Id":  "{{owner.member.nationalityLookup.code}}",
+        "Name": "{{owner.member.nationalityLookup.arabicName}}"
+    },
+    "CRActivities": [
+    {%- for activity in company.selectedActivity.activities %}
+    {
+            "Id": "{{activity.isicCode}}",
+            "Name": "{{activity.arabicName}}"
+    }
+    {%- if forloop.last == false -%},{%- endif -%}
+    {%- endfor %}
+    ],
+    "Location": {
+        "BuildingNumber":  "{{company.nationalAddress.saudiAddress.buildingNumber}}",
+        "AdditionalNo": "{{company.nationalAddress.saudiAddress.additionalNumber}}",
+        "UnitNo": "{{company.nationalAddress.unitNumber | default: 0}}",
+        "ZipCode":"{{company.nationalAddress.saudiAddress.postCode}}"
+    },
+    "CRRepresentative": {
+        {%- assign representer = company.managers | first %}
+
+         "PartyId":  "{{representer.member.identityNumber}}",
+            {%- assign representerFullname = representer.member.firstNameAr | append: " " |  append:  representer.member.middleNameAr | append: " " |  append: representer.member.grandNameAr | append: " " |  append:  representer.member.familyNameAr %}
+            "Name": "{{representerFullname}}",
+            "Birthdate": "{{representer.member.birthDate | date: '%s'}}",
+            "RelationType": {
+                "Id": "{{representer.relationCode}}",
+                "Name": ""
+            },
+            "Nationality": {
+                "Id": "{{representer.member.nationalityLookup.code}}",
+                "Name": "{{representer.member.nationalityLookup.arabicName}}"
+            },
+        {%- if representer.member.mobileNumber[0] == '0' and  representer.member.mobileNumber[1] == '0' %}
+        {%- assign mob_size = representer.mobileNumber.size | minus: 2 %}
+         "Mobile": "{{representer.member.mobileNumber |  slice: 2,12 }}",
+            {%- else %}
+         "Mobile": "{{representer.member.mobileNumber}}",
+            {%- endif %}
+         "Email":  "{{representer.member.email}}"
+    },
+    "City": {
+        "Id": "{{lookups.LookupCityBusinessCode}}",
+        "Name": "{{lookups.LookupCityBusinessName}}"
+    }
+}

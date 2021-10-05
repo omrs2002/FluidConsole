@@ -38,6 +38,11 @@ namespace FluidConsoleApp
             {% assign years = 3 | times: 365 | times: 86400 %}
             {{ 'now' | date: '%s' | plus: years | date: '%d-%m-%Y' }}
             ";
+        } 
+        internal static string GosiTemplate()
+        {
+
+            return System.IO.File.ReadAllText("C:\\My Projects\\FluidConsole\\FluidConsoleApp\\Json\\GOSI.liquid"); ;
         }
    internal static string NicVerifyCompanyTemplate()
         {
