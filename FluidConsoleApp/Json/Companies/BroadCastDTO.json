@@ -317,6 +317,12 @@
       "BankId": "214",
       "BankNumber": "1"
     },
+
+    "SPBillInfo": {
+      "InvoiceAmount": 0.0,
+      "SettlementAmount": 0.0,
+      "SubscriptionDuration" :  365
+    },
     "creator": {
       "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "identityNumber": "1233456543",
@@ -443,7 +449,7 @@
         {
           "id": 1,
           "isicCode": "745674574",
-          "arabicName": "Activ 1 arabic Name",
+          "arabicName": "التجارة",
           "englishName": "",
           "isMcRequiredLicense": true,
           "isicClassifications": 0,
@@ -469,7 +475,7 @@
         {
           "id": 2,
           "isicCode": "235245242",
-          "arabicName": "activity 2 arabic Name",
+          "arabicName": "السياحة",
           "englishName": "",
           "isMcRequiredLicense": true,
           "isicClassifications": 0,

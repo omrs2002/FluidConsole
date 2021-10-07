@@ -4,7 +4,7 @@
     "NationalNo": "{% raw %}{{NicVerify.NEW_700_ID}}{% endraw %}",
     "IsMain": "true",
     "MainCR": "0",
-    "LaborOfficeNo": "{{lookups.HrdsLookups.LaborOffice.Code}}",
+    "LaborOfficeNo": "{{lookups.HrdsLookups.LaborOffice.Code | default: 0}}",
     "BusinessType": {
         "Id": "{{company.bussinessTypeLookup.code}}",
         "Name": "{{company.bussinessTypeLookup.arabicName}}"
