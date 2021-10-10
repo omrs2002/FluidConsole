@@ -16,10 +16,12 @@ namespace FluidConsoleApp
         {
 
             //TestSimpleTemplate();
-            TestGOSItemplate();
+            //TestGOSItemplate();
             //TestNICVerifyTemplate();
             //TestMC();
-            TestCompanyVerify();
+            //TestCompanyVerify();
+            testGenerics test = new testGenerics();
+
 
         }
 

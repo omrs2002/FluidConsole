@@ -2,11 +2,11 @@
 	"RequestData": {
 		{%- assign days = 365 | times: 86400 %}
 		"EndDateGregoriansU": "{{company.PaymentInformation.PaymentDate |date: '%s'|plus: days  }}",
-		"InvoiceAmount": "{{license.SPBillInfo.TotalAmount}}",
+		"InvoiceAmount": "{{company.SPBillInfo.InvoiceAmount}}",
 		"PaymentMethod": "1",
-		"SettlementAmount": "{{license.SPBillInfo.TotalAmount}}",
+		"SettlementAmount": "{{company.SPBillInfo.SettlementAmount}}",
 		"StartDateGregoriansU": "{{company.PaymentInformation.PaymentDate | date: '%s' }}",
-		"SubscriptionDuration": "365",
+		"SubscriptionDuration": "{{company.SPBillInfo.SubscriptionDuration}}",
 		"CorporateDetails": {
 			"CID": "{% raw %}{{MC.CRNo}}{% endraw %}",
 			"CIDType": "2",

@@ -319,9 +319,9 @@
     },
 
     "SPBillInfo": {
-      "InvoiceAmount": 0.0,
-      "SettlementAmount": 0.0,
-      "SubscriptionDuration" :  365
+      "InvoiceAmount": 23443.0,
+      "SettlementAmount": 23443.0,
+      "SubscriptionDuration": 365
     },
     "creator": {
       "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -557,14 +557,14 @@
       ]
     },
     "financialYear": {
-      "startDay": 0,
-      "startMonth": 0,
+      "startDay": 1,
+      "startMonth": 3,
       "firstFinancialYearEndDate": "",
       "calendarTypeLookup": {
         "nextStep": "",
         "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
         "arabicName": "هجري",
-        "englishName": "",
+        "englishName": "hijri",
         "code": "1",
         "parentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
         "descriptionAr": "",
@@ -648,7 +648,7 @@
           "profileImage": ""
         },
         "relationCode": "1",
-        "relationNameAr": " الشركة مدير",
+        "relationNameAr": "مدير الشركة ",
         "partnerShares": "40"
       }
     ]
