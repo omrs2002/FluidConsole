@@ -1,10 +1,9 @@
 {
     "Input": {
-        "Request_Number": "{{company.requestId}}",
+        "Request_Number": "{{company.CompanyRequestNumber}}",
         "New_700_ID": "{% raw %}{{NEW_700_ID}}{% endraw %}",
-        "Firm_Name":  "{{company.crInfo.coc.fullCocName}}",
+        "Firm_Name":  "{{company.CompanyName}}",
         {%- assign firstOwner = company.owners | first %}
-        
         "Firm_Nationality_Code": "{{firstOwner.nationalityLookup.code}}",
         "Issue_DateU": "{{company.PaymentInformation.PaymentDate | date: '%s'}}",
         {%- assign years = company.crInfo.crDuration | times: 365 | times: 86400 %}
@@ -16,8 +15,7 @@
         "Zip_Code":"{{company.nationalAddress.saudiAddress.postCode}}",
         "Address":"{{company.nationalAddress.saudiAddress.addressLine1}}",
         {%- comment %} ///////////////////////// {% endcomment %}
-
-        "Telephone":"{{company.creator.mobileNumber}}",
+        "Telephone":"{{company.contacts.PhoneNumber}}",
         "Fax": 0,
         "Capital":"{{company.crInfo.crCapital}}",
         "Main_CR_Number": 0
@@ -28,8 +26,8 @@
         {
             "Owner_ID": "{{owner.member.identityNumber}}",
             "LK_Relation_Code": "{{owner.relationCode}}",
-            "Percentage": 0.0,
-            "Share": "{{owner.partnerShares}}"
+            "Percentage": "{{owner.partnerPercentage}}",
+            "Share": "{{owner.PartnerShares}}"
         }
         {%- if forloop.last == false -%},{%- endif -%}
         {%- endfor %}

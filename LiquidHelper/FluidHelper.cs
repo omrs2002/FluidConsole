@@ -20,8 +20,8 @@ namespace LiquidHelper
             options.MemberAccessStrategy.Register<JObject, object>((source, name) => source[name]);
             options.ValueConverters.Add(x => x is JObject o ? new ObjectValue(o) : null);
             options.ValueConverters.Add(x => x is JValue v ? v.Value : null);
-            template = new FluidParser().Parse(sourceModel);
-            context = new TemplateContext(JObject.Parse(input), options);
+            template = new FluidParser().Parse(sourceModel.ToLower());
+            context = new TemplateContext(JObject.Parse(input.ToLower()), options);
             var response = template.Render(context);
             return response;
         }

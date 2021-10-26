@@ -3,8 +3,8 @@
     "CRNumber": "{% raw %}{{MC.CRNo}}{% endraw %}",
     "NationalNo": "{% raw %}{{NicVerify.NEW_700_ID}}{% endraw %}",
     "IsMain": "true",
-    "MainCR": "0",
-    "LaborOfficeNo": "{{lookups.HrdsLookups.LaborOffice.Code | default: 0}}",
+    "MainCR": "",
+    "LaborOfficeNo": "{{lookups.HrsdLookups.LaborOffice.Code}}",
     "BusinessType": {
         "Id": "{{company.bussinessTypeLookup.code}}",
         "Name": "{{company.bussinessTypeLookup.arabicName}}"
@@ -13,19 +13,18 @@
         "Id": "{{company.crInfo.crCityLookup.code}}",
         "Name": "{{company.crInfo.crCityLookup.arabicName}}"
     },
-    "CRName": "{{company.crInfo.coc.fullCocName}}",
+    "CRName": "{{company.CompanyName}}",
     "IssueDate": "{{company.PaymentInformation.PaymentDate | date: '%s'}}",
     {%- assign years = company.CrInformation.CrInfoDuration | times: 365 | times: 86400 %}
     "ExpiryDate": "  {{ company.PaymentInformation.PaymentDate | date: '%s' | plus: years }}",
-
     "Nationality": {
     {%- assign first_owner = company.owners | first %}
-        {%- assign Nation = lookups.HrdsLookups.ManagersNationalities | where: 'Id', first_owner.member.nationalityLookup.id | first %}
+        {%- assign Nation = lookups.HrsdLookups.OwnerNationalities | where: 'Id', first_owner.member.nationalityLookup.id | first %}
          "Id": "{{Nation.Code}}",
          "Name": "{{Nation.Name}}"
     },
     "ZipCode": "{{company.nationalAddress.saudiAddress.postCode}}",
-    "POBOX1": "{{company.nationalAddress.saudiAddress.addressLine1}}",
+    "POBOX1": "{{company.nationalAddress.saudiAddress.postCode}}",
     "City": {
         "Id": "{{company.crInfo.crCityLookup.code}}",
         "Name": "{{company.crInfo.crCityLookup.arabicName}}"
@@ -51,7 +50,7 @@
                     },
                     "Nationality": 
                     {
-                        {%- assign Nation = lookups.HrdsLookups.OwnerNationalities  | where: 'Id', owner.member.nationalityLookup.id | first %}
+                        {%- assign Nation = lookups.HrsdLookups.OwnerNationalities  | where: 'Id', owner.member.nationalityLookup.id | first %}
                         "Id": "{{Nation.Code}}",
                         "Name": "{{Nation.Name}}"
                     }
@@ -71,7 +70,7 @@
                     "Name": "{{manager.relationNameAr}}"
                 },
                 "Nationality": {
-                    {%- assign Nation = lookups.HrdsLookups.OwnerNationalities  | where: 'Id', manager.member.nationalityLookup.id | first %}
+                    {%- assign Nation = lookups.HrsdLookups.ManagersNationalities  | where: 'Id', manager.member.nationalityLookup.id | first %}
                     "Id": "{{Nation.Code}}",
                     "Name": "{{Nation.Name}}"
                 }
@@ -84,7 +83,7 @@
         "Name": "{{representerFullname | strip}}",
         "Nationality": 
          {
-                {%- assign Nation = lookups.HrdsLookups.ManagersNationalities  | where: 'Id', representer.member.nationalityLookup.code | first %}
+                {%- assign Nation = lookups.HrsdLookups.ManagersNationalities  | where: 'Id', representer.member.nationalityLookup.code | first %}
                 "Id": "{{Nation.Code}}",
                 "Name": "{{Nation.Name}}"
          },

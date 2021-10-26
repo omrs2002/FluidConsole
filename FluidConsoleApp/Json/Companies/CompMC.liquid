@@ -1,6 +1,18 @@
 {
-    "RequestReferance": "{{company.requestId}}",
-    "RecieptNumber": "{{company.PaymentInformation.RecieptNumber}}",
-    "PaymentDateU": "{{company.PaymentInformation.PaymentDate | date: '%s'}}",
-    "NationalNumber": "{% raw %}{{NicVerify.NEW_700_ID}}{% endraw %}"
+  "SBCRequestId": "{{company.CompanyRequestNumber}}",
+  "no700": "{% raw %}{{NicVerify.NEW_700_ID}}{% endraw %}",
+  "billNo": "{{paymentInformation.CombinedInvoiceNumber}}",
+  "totalAmount": "{{company.McTotalAmount}}",
+  "confirmContractBillDetails": [
+    {%- for billinfo in Company.McInvoiceItems %}
+    {
+      "typeId": "{{billinfo.TypeId}}",
+      "nameEng": "{{billinfo.NameEng}}",
+      "nameAr": "{{billinfo.NameAr}}",
+      "fees": "{{billinfo.Fees}}",
+      "vat": "{{billinfo.Vat}}"
+    }
+    {%- if forloop.last == false -%},{%- endif -%}
+    {%- endfor %}
+  ]
 }

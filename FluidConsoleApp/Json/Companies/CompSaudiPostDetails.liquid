@@ -6,20 +6,18 @@
 		"PaymentMethod": "1",
 		"SettlementAmount": "{{company.SPBillInfo.SettlementAmount}}",
 		"StartDateGregoriansU": "{{company.PaymentInformation.PaymentDate | date: '%s' }}",
-		"SubscriptionDuration": "{{company.SPBillInfo.SubscriptionDuration}}",
+		"SubscriptionDuration":  "{{company.SPBillInfo.SubscriptionDuration}}",
 		"CorporateDetails": {
 			"CID": "{% raw %}{{MC.CRNo}}{% endraw %}",
 			"CIDType": "2",
-			"CRActivities": "{%- for activity in company.selectedActivity.activities -%} 
-			 {{ activity.arabicName | append : " " }}
-			{%- if forloop.last == false -%}و{%- endif -%}
-			{%- endfor -%}",
+			{%- assign cr_activities = '' %}
+			"CRActivities": "",
 			"CRDescriptiveAddress": "",
-			"CorporateNameAr": "{{company.crInfo.coc.fullCocName}}",
+			"CorporateNameAr": "{{company.CompanyName}}",
 			"CorporateNameEn": "",
 			"CorporateSize": "0",
 			"CustomerCategoryCode": "5",
-	        "EmailId": "{{company.creator.email}}",
+	        "EmailId": "{{company.Contacts.email}}",
 			"ISICClassificationDetails": 
 			[
 				{%- for activity in company.selectedActivity.activities %}

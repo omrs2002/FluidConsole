@@ -1,0 +1,361 @@
+﻿{
+  "Company": {
+    "RequestId": "2d99aa49-a993-f026-8211-39ffaacf8d62",
+    "CompanyName": "شركة العليا الفندقية شركة الشخص الواحد",
+    "CompanyRequestNumber": 3467,
+    "Creator": {
+      "Id": "c3ca3b4e-b051-444a-9541-52f2eebc093f",
+      "IdentityNumber": "1132381599",
+      "IdentityTypeId": "e8622495-f05d-b6d0-8c30-39f7ad477d03",
+      "IdentityAttachement": null,
+      "IdentityIssueDate": null,
+      "IdentityExpireDate": null,
+      "BirthDate": "5/15/1980 12:00:00 AM",
+      "BirthDateHijri": "1400/07/01",
+      "Email": "aarr@MM.cc",
+      "MobileNumber": "00966590000111",
+      "NationalityLookup": {
+        "NextStep": null,
+        "Id": "59b8aa35-12d2-4695-b97e-7e5c3f93f825",
+        "ArabicName": "السعودية",
+        "EnglishName": "Saudi Arabia",
+        "Code": "113",
+        "ParentId": null,
+        "DescriptionAr": null,
+        "DescriptionEn": null
+      },
+      "FirstNameAr": "جهاد",
+      "MiddleNameAr": "احمد",
+      "GrandNameAr": "معاذ",
+      "FamilyNameAr": "خالد",
+      "FirstNameEn": "Gehad",
+      "MiddleNameEn": "Ahmed",
+      "GrandNameEn": "Muath",
+      "FamilyNameEn": "Khalid",
+      "Gender": 2,
+      "ProfileImage": null
+    },
+    "BussinessTypeLookup": {
+      "NextStep": null,
+      "Id": "e3d074d7-c228-411e-984c-c5ab124c06c3",
+      "ArabicName": "ذات مسئولية محدودة",
+      "EnglishName": "Limited Responsibility",
+      "Code": "204",
+      "ParentId": null,
+      "DescriptionAr": null,
+      "DescriptionEn": null
+    },
+    "CrInfo": {
+      "CrDuration": 2,
+      "CrCapital": 1000000,
+      "CapitalDescription": "9",
+      "CrCityLookup": {
+        "NextStep": null,
+        "Id": "906f95fa-ea69-42b2-a9d7-0bed67c1c197",
+        "ArabicName": "ابها",
+        "EnglishName": "Abha",
+        "Code": "5850",
+        "ParentId": null,
+        "DescriptionAr": null,
+        "DescriptionEn": null
+      },
+      "CrRegionLookup": {
+        "NextStep": null,
+        "Id": "56f90aa3-c296-4d9c-a20b-9cb8934ffed7",
+        "ArabicName": "عسير",
+        "EnglishName": "Asir",
+        "Code": "6",
+        "ParentId": null,
+        "DescriptionAr": null,
+        "DescriptionEn": null
+      }
+    },
+    "NationalAddress": {
+      "UnitNumber": "2",
+      "Floor": "2",
+      "UnitTypeLookup": {
+        "NextStep": null,
+        "Id": "58508649-f347-41a5-96e6-453929c6fbe8",
+        "ArabicName": "شقة دور واحد",
+        "EnglishName": "Flat",
+        "Code": "4",
+        "ParentId": null,
+        "DescriptionAr": null,
+        "DescriptionEn": null
+      },
+      "SaudiAddress": {
+        "AdditionalNumber": "3690",
+        "AddressLine1": "6666  - Abha Al Jadidah Dist.",
+        "AddressLine2": "ABHA 62512 - 3690",
+        "BuildingNumber": "6666",
+        "CityName": "ABHA",
+        "CityNameAr": "ابها",
+        "CityId": "15",
+        "DistrictName": "Abha Al Jadidah Dist.",
+        "DistrictNameAr": "حي ابها الجديدة",
+        "DistrictId": "10600015012",
+        "Latitude": "18.2117971959275",
+        "Longitude": "42.4829290919938",
+        "PostCode": "62512",
+        "RegionName": "Asir",
+        "RegionNameAr": "منطقة عسير",
+        "RegionId": "6",
+        "StreetName": "",
+        "StreetNameAr": ""
+      }
+    },
+    "Contacts": {
+      "MobileNo": "0555555555",
+      "Email": "TEST@GMAIL.COM",
+      "PhoneNumber": "0111111111",
+      "IsEcommerce": false,
+      "WebSite": "",
+      "MaaroofId": null
+    },
+    "SelectedActivity": {
+      "Activities": [
+        {
+          "Id": 5348,
+          "IsicCode": "353001",
+          "ArabicName": "إنتاج البخار والمياة الساخنة لأغراض التدفئة والوقود والأغراض الأخرى وتجميعها وتوزيعها",
+          "EnglishName": "Production, collection and distribution of steam and hot water for heating, power and other purposes",
+          "IsMcRequiredLicense": false,
+          "IsicClassifications": 6,
+          "ParentClass": {
+            "Id": 2006,
+            "Code": "3530",
+            "ArabicName": "توصيل الوقود البخاري وتكييف الهواء",
+            "EnglishName": "Steam and air conditioning supply"
+          },
+          "ParentSection": {
+            "Id": 25,
+            "Code": "D",
+            "ArabicName": "إمدادات الكهرباء والغاز والبخار وتكييف الهواء",
+            "EnglishName": "Electricity, gas, steam and air conditioning supply"
+          },
+          "LicenseIssuer": {
+            "Id": 0,
+            "Code": null,
+            "ArabicName": null,
+            "EnglishName": null
+          }
+        }
+      ],
+      "Classes": null,
+      "Sections": null
+    },
+    "FinancialYear": {
+      "StartDay": 10,
+      "StartMonth": 3,
+      "FirstFinancialYearEndDate": "1444-03-09",
+      "CalendarTypeLookup": {
+        "NextStep": null,
+        "Id": "26a167a3-6663-4f95-98a5-2200091db7bd",
+        "ArabicName": "أم القرى",
+        "EnglishName": "UmmAlQura",
+        "Code": "1",
+        "ParentId": null,
+        "DescriptionAr": null,
+        "DescriptionEn": null
+      }
+    },
+    "Managers": [
+      {
+        "Id": "bbfb0f12-eed2-c094-4d16-39ffaad16dce",
+        "Member": {
+          "Id": "c3ca3b4e-b051-444a-9541-52f2eebc093f",
+          "IdentityNumber": "1132381599",
+          "IdentityTypeId": "e8622495-f05d-b6d0-8c30-39f7ad477d03",
+          "IdentityAttachement": null,
+          "IdentityIssueDate": null,
+          "IdentityExpireDate": null,
+          "BirthDate": "5/15/1980 12:00:00 AM",
+          "BirthDateHijri": "1400/07/01",
+          "Email": "aarr@MM.cc",
+          "MobileNumber": "00966590000111",
+          "NationalityLookup": {
+            "NextStep": null,
+            "Id": "59b8aa35-12d2-4695-b97e-7e5c3f93f825",
+            "ArabicName": "العربية السعودية",
+            "EnglishName": "Saudi Arabia",
+            "Code": null,
+            "ParentId": null,
+            "DescriptionAr": null,
+            "DescriptionEn": null
+          },
+          "FirstNameAr": "جهاد",
+          "MiddleNameAr": "احمد",
+          "GrandNameAr": "معاذ",
+          "FamilyNameAr": "خالد",
+          "FirstNameEn": "Gehad",
+          "MiddleNameEn": "Ahmed",
+          "GrandNameEn": "Muath",
+          "FamilyNameEn": "Khalid",
+          "Gender": 2,
+          "ProfileImage": null
+        },
+        "RelationCode": "1",
+        "RelationNameAr": " شريك مدير",
+        "RelationNameEn": " Partner Manager",
+        "PartnerShares": "1",
+        "PartnerPercentage": "100",
+        "IdentityTypeLookup": {
+          "NextStep": null,
+          "Id": "e8622495-f05d-b6d0-8c30-39f7ad477d03",
+          "ArabicName": "سعودي",
+          "EnglishName": "Sauid",
+          "Code": "1",
+          "ParentId": null,
+          "DescriptionAr": null,
+          "DescriptionEn": null
+        }
+      }
+    ],
+    "Owners": [
+      {
+        "Id": "bbfb0f12-eed2-c094-4d16-39ffaad16dce",
+        "Member": {
+          "Id": "c3ca3b4e-b051-444a-9541-52f2eebc093f",
+          "IdentityNumber": "1132381599",
+          "IdentityTypeId": "e8622495-f05d-b6d0-8c30-39f7ad477d03",
+          "IdentityAttachement": null,
+          "IdentityIssueDate": null,
+          "IdentityExpireDate": null,
+          "BirthDate": "5/15/1980 12:00:00 AM",
+          "BirthDateHijri": "1400/07/01",
+          "Email": "aarr@MM.cc",
+          "MobileNumber": "00966590000111",
+          "NationalityLookup": {
+            "NextStep": null,
+            "Id": "59b8aa35-12d2-4695-b97e-7e5c3f93f825",
+            "ArabicName": "العربية السعودية",
+            "EnglishName": "Saudi Arabia",
+            "Code": null,
+            "ParentId": null,
+            "DescriptionAr": null,
+            "DescriptionEn": null
+          },
+          "FirstNameAr": "جهاد",
+          "MiddleNameAr": "احمد",
+          "GrandNameAr": "معاذ",
+          "FamilyNameAr": "خالد",
+          "FirstNameEn": "Gehad",
+          "MiddleNameEn": "Ahmed",
+          "GrandNameEn": "Muath",
+          "FamilyNameEn": "Khalid",
+          "Gender": 2,
+          "ProfileImage": null
+        },
+        "RelationCode": "1",
+        "RelationNameAr": " شريك مدير",
+        "RelationNameEn": " Partner Manager",
+        "PartnerShares": "1",
+        "PartnerPercentage": "100",
+        "IdentityTypeLookup": {
+          "NextStep": null,
+          "Id": "e8622495-f05d-b6d0-8c30-39f7ad477d03",
+          "ArabicName": "سعودي",
+          "EnglishName": "Sauid",
+          "Code": "1",
+          "ParentId": null,
+          "DescriptionAr": null,
+          "DescriptionEn": null
+        }
+      }
+    ],
+    "PaymentInformation": {
+      "ReferenceId": "2d99aa49-a993-f026-8211-39ffaacf8d62",
+      "Status": 1,
+      "CombinedInvoiceNumber": "2110359139",
+      "PaymentMethod": 2,
+      "PaymentDate": "2021-10-19T10:58:55.038",
+      "Metadata": {
+        "AdditionalProp1": "string",
+        "AdditionalProp2": "string",
+        "AdditionalProp3": "string"
+      }
+    },
+    "CapitalDetails": {
+      "RequestId": "2d99aa49-a993-f026-8211-39ffaacf8d62",
+      "CapitalType": 1,
+      "TotalCapital": 1000000,
+      "CashCapital": 1000000,
+      "AssetCapital": 0,
+      "TotalQuotaCount": 2,
+      "QuotaValue": 500000,
+      "CashQuotaCount": 2,
+      "AssetQuotaCount": 0
+    },
+    "McInvoiceItems": [
+      {
+        "TypeId": "0",
+        "NameEng": "Companies",
+        "NameAr": "الشركات",
+        "Fees": 90,
+        "Vat": 15
+      }
+    ],
+    "McTotalAmount": "105.0"
+  },
+  "Momra": null,
+  "Lookups": {
+    "BaladyLookups": {
+      "SubmitterNationalityId": null,
+      "SubmitterIdentityTypeId": null,
+      "LicenseLookups": null
+    },
+    "GosiLookups": {
+      "ManagersNationalities": [
+        {
+          "Id": "59b8aa35-12d2-4695-b97e-7e5c3f93f825",
+          "Code": "SAU",
+          "Name": "السعودية\r\n"
+        }
+      ],
+      "OwnerNationalities": [
+        {
+          "Id": "59b8aa35-12d2-4695-b97e-7e5c3f93f825",
+          "Code": "SAU",
+          "Name": "السعودية\r\n"
+        }
+      ]
+    },
+    "GaztLookups": {
+      "ManagersNationalities": [
+        {
+          "Id": "59b8aa35-12d2-4695-b97e-7e5c3f93f825",
+          "Code": "SAU",
+          "Name": "السعودية\r\n"
+        }
+      ],
+      "OwnerNationalities": [
+        {
+          "Id": "59b8aa35-12d2-4695-b97e-7e5c3f93f825",
+          "Code": "SAU",
+          "Name": "السعودية\r\n"
+        }
+      ]
+    },
+    "HrsdLookups": {
+      "ManagersNationalities": [
+        {
+          "Id": "59b8aa35-12d2-4695-b97e-7e5c3f93f825",
+          "Code": "SAU",
+          "Name": "سعودي"
+        }
+      ],
+      "OwnerNationalities": [
+        {
+          "Id": "59b8aa35-12d2-4695-b97e-7e5c3f93f825",
+          "Code": "SAU",
+          "Name": "سعودي"
+        }
+      ],
+      "LaborOffice": {
+        "Id": "89d40a80-1cb6-4e2a-ae1c-66c71d1497f8",
+        "Code": "11",
+        "Name": "أبها"
+      }
+    }
+  }
+}

@@ -7,7 +7,7 @@
     "CRNo": "{% raw %}{{MC.CRNo}}{% endraw %}",
     "NationalNo": "{% raw %}{{NicVerify.NEW_700_ID}}{% endraw %}",
     "IsMain": true,
-    "MainCR": "0",
+    "MainCR": "",
     "BusinessType": {
         "Id": "{{company.bussinessTypeLookup.code}}",
         "Name": "{{company.bussinessTypeLookup.arabicName}}"
@@ -16,35 +16,35 @@
         "Id": "{{company.crInfo.crCityLookup.code}}",
         "Name": "{{company.crInfo.crCityLookup.arabicName}}"
     },
-    "CRName": "{{company.crInfo.coc.fullCocName}}",
+    "CRName": "{{company.CompanyName}}",
     "IssueDate": "{{company.PaymentInformation.PaymentDate | date: '%s'}}",
     {%- assign years = company.CrInformation.CrInfoDuration | times: 365 | times: 86400 %}
     "ExpiryDate": "  {{ company.PaymentInformation.PaymentDate | date: '%s' | plus: years }}",
     "Nationality": {
         {%- assign first_owner = company.owners | first %}
-        {%- assign Nation = lookups.GaztLookups.ManagersNationalities | where: 'Id', first_owner.member.nationalityLookup.id | first %}
+        {%- assign Nation = lookups.GaztLookups.OwnerNationalities | where: 'Id', first_owner.member.NationalityLookup.id | first %}
          "Id": "{{Nation.Code}}",
          "Name": "{{Nation.Name}}"
     },
     "ZipCode": "{{company.nationalAddress.saudiAddress.postCode}}",
-    "POBOX1": "{{company.nationalAddress.saudiAddress.addressLine1}}",
+    "POBOX1": "{{company.nationalAddress.saudiAddress.postCode}}",
     "City": {
         "Id": "{{company.crInfo.crCityLookup.code}}",
         "Name": "{{company.crInfo.crCityLookup.arabicName}}"
     },
     "eCR_Street":  "{{company.nationalAddress.saudiAddress.streetNameAr}}",
-    "eCR_Building": "{{company.nationalAddress.saudiAddress.buildingNumber}}",
-    "eCR_OfficeNumber": "{{company.nationalAddress.saudiAddress.unitNumber}}",
+    "eCR_Building": "{{company.nationalAddress.saudiAddress.buildingNumber}}",-
+    "eCR_OfficeNumber": "{{company.nationalAddress.unitNumber}}",
     "Capital":"{{company.crInfo.crCapital}}",
     "Company_PaidCapital": {{company.crInfo.crCapital}}",
-    "Company_ShareCount": "{{owner.partnerShares}}",
-    "Company_SharePrice": "{{owner.partnerShares}}",
+    "Company_ShareCount": "0",
+    "Company_SharePrice": 0.0,
     "FiscalYear": {
         "Id": "{{company.financialYear.calendarTypeLookup.code}}",
-        "Name": "{{company.financialYear.calendarTypeLookup.arabicName}}"
+        "Name": "{{company.financialYear.calendarTypeLookup.englishName}}"
     },
     "FiscalYearEndDay": "{{company.financialYear.startDay}}",
-    "FiscalYearEndMonth": "{{company.financialYear.startMonthy}}",
+    "FiscalYearEndMonth": "{{company.financialYear.startMonth}}",
     "CRParties": [
         {%- comment %} Start filling owners {% endcomment %}
             {%- for owner in company.owners %}
@@ -56,15 +56,15 @@
                   "Name": "{{owner.relationNameAr}}"
                 },
                 "Nationality": {
-                    {%- assign Nation = lookups.GaztLookups.OwnerNationalities  | where: 'Id', owner.member.nationalityLookup.id | first %}
+                    {%- assign Nation = lookups.GosiLookups.OwnerNationalities  | where: 'Id', owner.member.nationalityLookup.id | first %}
                     "Id": "{{Nation.Code}}",
                     "Name": "{{Nation.Name}}"
                 },
                 "PartyId":  "{{owner.member.identityNumber}}",
                 "PartyIDType": null,
-                "PartyPercint": 0.0,
+                "PartyPercint": "{{Owner.Member.partnerPercentage}}",
                 "PartyGross": 0.0,
-                "PartyShareCount": "{{owner.partnerShares}}",
+                "PartyShareCount": "{{Owner.Member.partnerShares}}",
                 "BirthDateU": "{{owner.member.birthDate | date: '%s'}}"
             }
             {%- if forloop.last == false -%},{%- endif -%}
@@ -80,15 +80,15 @@
                     "Name": "{{manager.relationNameAr}}"
                 },
                 "Nationality": {
-                    {%- assign Nation = lookups.GaztLookups.OwnerNationalities  | where: 'Id', manager.member.nationalityLookup.id | first %}
+                    {%- assign Nation = lookups.GosiLookups.OwnerNationalities  | where: 'Id', manager.member.nationalityLookup.id | first %}
                     "Id": "{{Nation.Code}}",
                     "Name": "{{Nation.Name}}"
                 },
                 "PartyId":  "{{manager.member.identityNumber}}",
                 "PartyIDType": null,
-                "PartyPercint": 0.0,
+                "PartyPercint": "{{manager.Member.partnerPercentage}}",
                 "PartyGross": 0.0,
-                "PartyShareCount": 0.0,
+                "PartyShareCount":"{{manager.MemberpartnerShares}}",
                 "BirthDateU": "{{manager.member.birthDate | date: '%s'}}"
              }
             {%- endfor %}
@@ -98,7 +98,7 @@
     {%- assign representerFullname = representer.member.firstNameAr | append: " " |  append:  representer.member.middleNameAr | append: " " |  append: representer.member.grandNameAr | append: " " |  append:  representer.member.familyNameAr %}
         "Name": "{{representerFullname | strip}}",
        "Nationality": {
-                    {%- assign Nation = lookups.GaztLookups.ManagersNationalities  | where: 'Id', representer.member.nationalityLookup.code | first %}
+                    {%- assign Nation = lookups.GosiLookups.OwnerNationalities  | where: 'Id', representer.member.nationalityLookup.code | first %}
                     "Id": "{{Nation.Code}}",
                     "Name": "{{Nation.Name}}"
                 },
